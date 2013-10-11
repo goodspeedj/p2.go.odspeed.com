@@ -3,7 +3,7 @@ class users_controller extends base_controller {
 
     public function __construct() {
         parent::__construct();
-        echo "users_controller construct called<br><br>";
+        //echo "users_controller construct called<br><br>";
     } 
 
     public function index() {
@@ -42,6 +42,11 @@ class users_controller extends base_controller {
      * URL structure for parameter is http://host/controler/method/paramter
      */
     public function profile($user_name = NULL) {
+
+        $view = View::instance('v_users_profile');
+        $view->user_name = $user_name;
+
+        echo $view;
 
         if($user_name == NULL) {
             echo "No user specified";
