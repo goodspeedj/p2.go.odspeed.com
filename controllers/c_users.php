@@ -43,17 +43,30 @@ class users_controller extends base_controller {
      */
     public function profile($user_name = NULL) {
 
+        // Setup the view
+        $this->template->content = View::instance('v_users_profile');
+        $this->template->title = "Profile";
+
+        // pass the user name parameter
+        $this->template->content->user_name = $user_name;
+
+        // Display the view
+        echo $this->template;
+
+        /*
         $view = View::instance('v_users_profile');
         $view->user_name = $user_name;
+        $view->color = "red";
 
         echo $view;
-
+        
         if($user_name == NULL) {
             echo "No user specified";
         }
         else {
             echo "This is the profile for ".$user_name;
         }
+        */
     }
 
 } # end of the class
