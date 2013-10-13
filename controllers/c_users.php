@@ -15,7 +15,13 @@ class users_controller extends base_controller {
     }
 
     public function login() {
-        echo "This is the login page";
+
+        // Setup the view
+        $this->template->content = View::instance('v_users_login');
+        $this->template->title = "Login";
+
+        // Display the view
+        echo $this->template;
     }
 
     public function logout() {
