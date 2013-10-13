@@ -7,6 +7,8 @@
                     
     <!-- Controller Specific JS/CSS -->
     <?php if(isset($client_files_head)) echo $client_files_head; ?>
+
+    <script>jquery.js</script>
     
 </head>
 
