@@ -4,8 +4,6 @@
     <title><?php if(isset($title)) echo $title; ?></title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" >
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap-responsive.min.css">
                     
     <!-- Controller Specific JS/CSS -->
     <?php if(isset($client_files_head)) echo $client_files_head; ?>
