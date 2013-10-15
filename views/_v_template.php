@@ -12,8 +12,6 @@
 
 <body>  
 
-    <?php if(isset($content)) echo $content; ?>
-
     <!-- Show or hide the nav bar -->
     <?php if(!$hide_navbar): ?>
         <div id='menu'>
@@ -21,6 +19,8 @@
         </div>
     <?php endif; ?>
 
+    <?php if(isset($content)) echo $content; ?>
+    
     <?php if(isset($client_files_body)) echo $client_files_body; ?>
 
 </body>
