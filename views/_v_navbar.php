@@ -1,12 +1,15 @@
+<!-- Generate the Navigation bar -->
 <div class="container">
-    <div class="navbar">
+    <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
-            <a class="brand" href="#">Title</a>
+        <div class="container">
+            <a class="brand" href="#">Flitter</a>
             <ul class="nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
+                <li class="active"><a href="#">Stream</a></li>
+                <li><a href="#">Find</a></li>
             </ul>
+        </div>
         </div>
     </div>
 </div>
+
