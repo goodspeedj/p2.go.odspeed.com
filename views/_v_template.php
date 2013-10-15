@@ -4,9 +4,10 @@
     <title><?php if(isset($title)) echo $title; ?></title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-       
+
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap-responsive.min.css">                
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-responsive.min.css"> 
+    <link rel="stylesheet" type="text/css" href="/css/p2-main.css">               
 
     <!-- Controller Specific JS/CSS -->
     <?php if(isset($client_files_head)) echo $client_files_head; ?>
@@ -20,9 +21,7 @@
         https://piazza.com/class/hktc23zr2apnf?cid=339
     -->
     <?php if(!$hide_navbar): ?>
-        <div id='menu'>
-            <?=$navbar;?>
-        </div>
+        <?=$navbar;?>
     <?php endif; ?>
 
     <?php if(isset($content)) echo $content; ?>
