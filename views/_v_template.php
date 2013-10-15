@@ -12,7 +12,10 @@
 
 <body>  
 
-    <!-- Show or hide the nav bar -->
+    <!-- 
+        Show or hide the nav bar.  Based on example from Piazza post #339
+        https://piazza.com/class/hktc23zr2apnf?cid=339
+    -->
     <?php if(!$hide_navbar): ?>
         <div id='menu'>
             <?=$navbar;?>
