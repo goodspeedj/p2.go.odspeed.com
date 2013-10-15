@@ -14,6 +14,13 @@
 
     <?php if(isset($content)) echo $content; ?>
 
+    <!-- Show or hide the nav bar -->
+    <?php if(!$hide_navbar): ?>
+        <div id='menu'>
+            <?=$navbar;?>
+        </div>
+    <?php endif; ?>
+
     <?php if(isset($client_files_body)) echo $client_files_body; ?>
 
 </body>
