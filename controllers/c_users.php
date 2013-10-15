@@ -22,19 +22,6 @@ class users_controller extends base_controller {
         $this->template->content = View::instance('v_users_login');
         $this->template->title = "Login";
 
-        // insert content into head
-        $client_files_head = Array(
-            '/css/profile.css', 
-            '/css/master.css',
-            '/css/bootstrap.min.css',
-            '/css/bootstrap-responsive.min.css');
-
-        $client_files_body = Array(
-            '/js/profile.js');
-
-        $this->template->client_files_head = Utils::load_client_files($client_files_head);
-        $this->template->client_files_body = Utils::load_client_files($client_files_body);
-
         // Display the view
         echo $this->template;
     }
@@ -68,12 +55,16 @@ class users_controller extends base_controller {
         $this->template->content = View::instance('v_users_profile');
         $this->template->title = "Profile";
 
-        // insert content into head
+        // pass the user name parameter
+        $this->template->content->user_name = $user_name;
+
+        // Display the view
+        echo $this->template;
+
+        /* insert content into head
         $client_files_head = Array(
-            'csss/profile.css', 
-            '/css/master.css',
-            '/css/bootstrap.min.css',
-            '/css/bootstrap-responsive.min.css');
+            '/css/profile.css', 
+            '/css/master.css');
 
         $client_files_body = Array(
             '/js/profile.js');
@@ -81,13 +72,8 @@ class users_controller extends base_controller {
         $this->template->client_files_head = Utils::load_client_files($client_files_head);
         $this->template->client_files_body = Utils::load_client_files($client_files_body);
 
-        // pass the user name parameter
-        $this->template->content->user_name = $user_name;
+        
 
-        // Display the view
-        echo $this->template;
-
-        /*
         $view = View::instance('v_users_profile');
         $view->user_name = $user_name;
         $view->color = "red";
