@@ -24,7 +24,7 @@ class users_controller extends base_controller {
 
         // insert content into head
         $client_files_head = Array(
-            'csss/profile.css', 
+            '/css/profile.css', 
             '/css/master.css',
             '/css/bootstrap.min.css',
             '/css/bootstrap-responsive.min.css');
