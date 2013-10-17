@@ -3,7 +3,7 @@
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
     <div class="container">
-      <div class="row offset2 span6">
+      <div class="row offset3 span6">
       <a class="brand" href="#">Flitter</a>
       <ul class="nav">
         <li class="active"><a href="#">Post</a></li>
