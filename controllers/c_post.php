@@ -3,11 +3,17 @@ class post_controller extends base_controller {
 
     public function __construct() {
         parent::__construct();
-        echo "post_controller construct called<br><br>";
     } 
 
     public function index() {
-        echo "This is the index page";
+
+        // Setup the view
+        $this->template->content = View::instance('v_post_index');
+        $this->template->title = "Post";
+
+
+        // Display the view
+        echo $this->template;
     }
 
     public function search() {
