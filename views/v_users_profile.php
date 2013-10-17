@@ -3,9 +3,17 @@
 	Also using alternative syntax - this should be a mostly HTML file
 -->
 <?php if (isset($user_name)): ?>
-	<h1>This is the profile for <?=$user_name?></h1>
+	<h3>Profile for <?=$user_name?></h3>
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td>value</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>value</td>
+        </tr>
+    </table>
 <?php else: ?>
-	<h1>No user has been specified</h1>
+	<h3>No user has been specified</h3>
 <?php endif; ?>
-
-Color is <?=$color?><br />
