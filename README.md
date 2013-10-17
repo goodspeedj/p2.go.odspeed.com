@@ -1,4 +1,4 @@
-p2.odspeed.com
+p2.go.odspeed.com
 ==============
 
 DWA15 Project #2
