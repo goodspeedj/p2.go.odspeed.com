@@ -30,8 +30,17 @@ class users_controller extends base_controller {
         echo "This is the logout page";
     }
 
-    public function add() {
-        echo "This is the logout page";
+    public function edit($user_name = NULL) {
+
+        // Setup the view
+        $this->template->content = View::instance('v_users_edit');
+        $this->template->title = "Edit Profile";
+
+        // pass the user name parameter
+        $this->template->content->user_name = $user_name;
+
+        // Display the view
+        echo $this->template;
     }
 
     public function remove() {
