@@ -1,13 +1,17 @@
 <div class="container">
 
   <form class="form-signin">
-    <h2 class="form-signin-heading">Please sign in</h2>
-    <input type="text" class="input-block-level" placeholder="Email address">
-    <input type="password" class="input-block-level" placeholder="Password">
+    <h3 class="form-signin-heading">Please sign in</h3>
+    <input type="text" placeholder="Email address">
+    <br />
+    <input type="password" placeholder="Password">
+    <!--
     <label class="checkbox">
       <input type="checkbox" value="remember-me"> Remember me
     </label>
-    <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+    -->
+    <p>&nbsp;</p>
+    <button class="btn btn-primary" type="submit">Sign in</button>
   </form>
 
 </div>
