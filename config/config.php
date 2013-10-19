@@ -14,11 +14,11 @@ If you want a different default time format for this app, set it below
 */
 
 # What is the name of this app?
-	define('APP_NAME', 'Nano-Blog');  
+	define('APP_NAME', 'Flitter');  
 
 # When email is sent out from the server, where should it come from?
 # Ideally, this should match the domain name
-	define('APP_EMAIL', 'support@odspeed.com'); 
+	define('APP_EMAIL', 'support@go.odspeed.com'); 
 
 /* 
 A email designated to receive messages from the server. Examples:
@@ -28,10 +28,10 @@ A email designated to receive messages from the server. Examples:
  	
  	Some might want this to be the same as the APP_EMAIL, others might want to create a designated gmail address for it
 */ 	
-	define('SYSTEM_EMAIL', 'system@odspeed.com'); 
+	define('SYSTEM_EMAIL', 'system@go.odspeed.com'); 
 
 # Default DB name for this app
-	define('DB_NAME', "p2.odspeed.com"); 
+	define('DB_NAME', "p2_go_odspeed_com"); 
 
 # Timezone
 	define('TIMEZONE', 'America/New_York');
