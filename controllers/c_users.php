@@ -6,12 +6,64 @@ class users_controller extends base_controller {
         //echo "users_controller construct called<br><br>";
     } 
 
+    public function test_db() {
+        //$sql = "UPDATE users set email = 'albert@einstein.com where user_id = 2";
+        //echo $sql;
+
+        /*
+        $new_user = Array (
+            'first_name' => 'Jeff',
+            'last_name' => 'Bezos',
+            'email' => 'jeffb@amazon.com'
+        );
+        */
+
+        //DB::instance(DB_NAME)->query($sql);
+        //DB::instance(DB_NAME)->insert('users', $new_user);
+
+        $_POST['first_name'] = 'Jeff';
+
+        $_POST = DB::instance(DB_NAME)->sanitize($_POST);
+
+        $sql = 'SELECT email FROM users WHERE first_name = "'.$_POST['first_name'].'"';
+        //$sql = "SELECT email FROM users WHERE user_id = 3";
+        echo DB::instance(DB_NAME)->select_field($sql);
+
+    }
+
     public function index() {
         echo "This is the index page";
     }
 
+
+    /**
+     *
+     */
     public function signup() {
-        echo "This is the signup page";
+        $this->template->content = View::instance('v_users_signup');
+        echo $this->template;
+    }
+
+
+    /**
+     * Process the sign up form
+     */
+    public function p_signup() {
+
+        // Add created time to $_POST data
+        $_POST['created'] = Time::now();
+
+        // Add the token record
+        $_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
+
+        // Encrypt the password
+        $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
+
+        // Insert the user information
+        DB::instance(DB_NAME)->insert_row('users', $_POST);
+
+        // Redirect after signup to login
+        Router::redirect('/users/login');
     }
 
     public function login() {
