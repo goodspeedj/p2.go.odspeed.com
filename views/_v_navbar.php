@@ -5,11 +5,18 @@
     <div class="container">
       <div class="row offset3 span6">
       <a class="brand" href="#">Flitter</a>
-      <ul class="nav">
-        <li class="active"><a href="#">Post</a></li>
-        <li><a href="#">Find</a></li>
-        <li><a href="/users/profile/">Profile</a></li>
-      </ul>
+
+      <!-- Only display the navigation buttons if the user is logged in -->
+      <?php if (isset($_COOKIE['token'])): ?>
+
+          <ul class="nav">
+            <li class="active"><a href="#">Post</a></li>
+            <li><a href="#">Find</a></li>
+            <li><a href="/users/profile/">Profile</a></li>
+          </ul>
+
+      <?php endif; ?>
+      
       </div>
     </div>
     </div>
