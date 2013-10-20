@@ -2,10 +2,10 @@
 
 <form method="POST" action="/users/p_signup">
 
-  First Name <input type="text" name="first_name"><br />
-  Last Name <input type="text" name="last_name"><br />
-  Email <input type="text" name="email"><br />
-  Password <input type="password" name="password"><br />
+  <input type="text" name="first_name" placeholder="First Name"><br />
+  <input type="text" name="last_name" placeholder="Last Name"><br />
+  <input type="text" name="email" placeholder="Email address"><br />
+  <input type="password" name="password" placeholder="Password"><br />
 
-  <input type="submit" value="Sign Up">
+  <button class="btn btn-primary" type="submit">Sign up</button>
 </form>
