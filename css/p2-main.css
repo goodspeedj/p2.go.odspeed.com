@@ -1,5 +1,6 @@
 body {
   padding-top: 70px;
+  font-family: Calibri, Arial, "Helvetica Nue", sans-serif;
 }
 
 .new_post {
@@ -9,4 +10,27 @@ body {
 
 .bold {
   font-weight: bold;
+}
+
+
+/* 
+ * Override default bootstrap style
+ */
+.navbar .brand {
+  color: #fff;
+  text-shadow: none;
+}
+
+.navbar-inner {
+  background-image: linear-gradient(to bottom,#4B4B4B,#3F3F3F);
+}
+
+.navbar .nav>li>a {
+  text-shadow: none;
+  color: #B1B1B1;
+}
+
+.navbar .nav>.active>a, .navbar .nav>.active>a:hover, .navbar .nav>.active>a:focus {
+	background-color: #BF0503;
+	color: #FFF;
 }
