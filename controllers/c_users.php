@@ -51,14 +51,19 @@ class users_controller extends base_controller {
     public function login() {
 
         // Don't display the navigation bar on the login page
-        $this->template->hide_navbar = TRUE;
+        //$this->template->hide_navbar = TRUE;
 
-        // Setup the view
-        $this->template->content = View::instance('v_users_login');
-        $this->template->title = "Login";
+        if (isset($_COOKIE['token'])) {
+            Router::redirect('/post/index');
+        }
+        else {
+            // Setup the view
+            $this->template->content = View::instance('v_users_login');
+            $this->template->title = "Login";
 
-        // Display the view
-        echo $this->template;
+            // Display the view
+            echo $this->template;
+        }
 
     }
 
