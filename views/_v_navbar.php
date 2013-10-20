@@ -7,10 +7,10 @@
         <span class="icon-bar"></span>
       </button>
       
-      <div class="offset2">
+      <div class="offset1">
       <a class="brand" href="./index.html">Flitter</a>
       
-      <div class="nav-collapse collapse">
+      <div class="nav-collapse collapse offset1">
         <ul class="nav">
           <li class="active">
             <a href="./index.html">Home</a>
