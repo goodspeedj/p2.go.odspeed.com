@@ -1,24 +1,32 @@
-<!-- Generate the Navigation bar -->
-<div class="container">
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
     <div class="container">
-      <div class="row offset3 span6">
-      <a class="brand" href="#">Flitter</a>
-
-      <!-- Only display the navigation buttons if the user is logged in -->
-      <?php if (isset($_COOKIE['token'])): ?>
-
-          <ul class="nav">
-            <li class="active"><a href="#">Post</a></li>
-            <li><a href="#">Find</a></li>
-            <li><a href="/users/profile/">Profile</a></li>
-          </ul>
-
-      <?php endif; ?>
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
       
+      <div class="offset2">
+      <a class="brand" href="./index.html">Flitter</a>
+      
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li class="active">
+            <a href="./index.html">Home</a>
+          </li>
+          <li>
+            <a href="./getting-started.html">Post</a>
+          </li>
+          <li>
+            <a href="./customize.html">Find</a>
+          </li>
+          <li>
+            <a href="./customize.html">Profile</a>
+          </li>
+        </ul>
+      </div>
       </div>
     </div>
-    </div>
-  </div>
+   </div>
 </div>

@@ -28,8 +28,8 @@
   <!-- Display main content -->
   <div class="container">
     <div class="row">
-      <div class="span3"></div>
-      <div class="span6">
+    <div class="span3"></div>
+      <div class="span6 center">
         <?php if(isset($content)) echo $content; ?>
         <?php if(isset($client_files_body)) echo $client_files_body; ?>
       </div>
