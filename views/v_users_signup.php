@@ -8,4 +8,5 @@
   <input type="password" name="password" placeholder="Password"><br />
 
   <button class="btn btn-primary" type="submit">Sign up</button>
+  
 </form>
