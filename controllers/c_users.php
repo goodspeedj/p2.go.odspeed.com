@@ -6,30 +6,6 @@ class users_controller extends base_controller {
         //echo "users_controller construct called<br><br>";
     } 
 
-    public function test_db() {
-        //$sql = "UPDATE users set email = 'albert@einstein.com where user_id = 2";
-        //echo $sql;
-
-        /*
-        $new_user = Array (
-            'first_name' => 'Jeff',
-            'last_name' => 'Bezos',
-            'email' => 'jeffb@amazon.com'
-        );
-        */
-
-        //DB::instance(DB_NAME)->query($sql);
-        //DB::instance(DB_NAME)->insert('users', $new_user);
-
-        $_POST['first_name'] = 'Jeff';
-
-        $_POST = DB::instance(DB_NAME)->sanitize($_POST);
-
-        $sql = 'SELECT email FROM users WHERE first_name = "'.$_POST['first_name'].'"';
-        //$sql = "SELECT email FROM users WHERE user_id = 3";
-        echo DB::instance(DB_NAME)->select_field($sql);
-
-    }
 
     public function index() {
         echo "This is the index page";
@@ -37,16 +13,18 @@ class users_controller extends base_controller {
 
 
     /**
-     *
+     * Display the user sign up form
      */
     public function signup() {
+
         $this->template->content = View::instance('v_users_signup');
         echo $this->template;
+
     }
 
 
     /**
-     * Process the sign up form
+     * Process the user sign up form
      */
     public function p_signup() {
 
@@ -66,8 +44,13 @@ class users_controller extends base_controller {
         Router::redirect('/users/login');
     }
 
+
+    /**
+     * Display the login form
+     */
     public function login() {
 
+        // Don't display the navigation bar on the login page
         $this->template->hide_navbar = TRUE;
 
         // Setup the view
@@ -76,12 +59,57 @@ class users_controller extends base_controller {
 
         // Display the view
         echo $this->template;
+
     }
 
+
+    /**
+     * Process the login page
+     */
+    public function p_login() {
+
+        // Get the encrypted value of the password
+        $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
+
+        // Get the token
+        $sql = 'SELECT token 
+                FROM users
+                WHERE email = "'.$_POST['email'].'"
+                AND password = "'.$_POST['password'].'"';
+
+        $token = DB::instance(DB_NAME)->select_field($sql);
+
+        if($token) {
+            setcookie('token', $token, strtotime('+1 year'), '/');
+            Router::redirect('/post/index');
+        }
+        else {
+            echo "Login incorrect.  Please try again.";
+        }
+
+    }
+
+
+    /**
+     * Log the user out
+     */
     public function logout() {
-        echo "This is the logout page";
+
+        // remove cookie
+        if(isset($_COOKIE)) {
+            unset($_COOKIE['token']);
+            setcookie('token', '', time() - 3600);
+        }
+        
+
+        // Send user back to login page
+        Router::redirect('/users/login');
     }
 
+
+    /**
+     * Edit the user profile
+     */
     public function edit($user_name = NULL) {
 
         // Setup the view
@@ -121,33 +149,6 @@ class users_controller extends base_controller {
 
         // Display the view
         echo $this->template;
-
-        /* insert content into head
-        $client_files_head = Array(
-            '/css/profile.css', 
-            '/css/master.css');
-
-        $client_files_body = Array(
-            '/js/profile.js');
-
-        $this->template->client_files_head = Utils::load_client_files($client_files_head);
-        $this->template->client_files_body = Utils::load_client_files($client_files_body);
-
-        
-
-        $view = View::instance('v_users_profile');
-        $view->user_name = $user_name;
-        $view->color = "red";
-
-        echo $view;
-        
-        if($user_name == NULL) {
-            echo "No user specified";
-        }
-        else {
-            echo "This is the profile for ".$user_name;
-        }
-        */
     }
 
 } # end of the class
