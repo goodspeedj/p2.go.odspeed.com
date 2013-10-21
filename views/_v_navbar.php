@@ -12,8 +12,11 @@
         
         <div class="nav-collapse collapse offset1">
           <ul class="nav">
+            <script>
+              var location = window.location.pathname;
+            </script>
             <li class="active">
-              <a href="./index.html">Home</a>
+              <a href="/index/index">Home</a>
             </li>
             <li>
               <a href="/post/index">Post</a>
