@@ -15,7 +15,7 @@
   
 </head>
 
-<body>  
+<body class="background-img">  
 
   <!-- 
     Show or hide the nav bar.  Based on example from Piazza post #339

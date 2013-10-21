@@ -1,6 +1,7 @@
 body {
   padding-top: 70px;
   font-family: Calibri, Arial, "Helvetica Nue", sans-serif;
+  background-color: #D4D4D4;
 }
 
 .new_post {
@@ -10,6 +11,10 @@ body {
 
 .bold {
   font-weight: bold;
+}
+
+.background-img {
+	background-image: url('../images/desk-main.png');
 }
 
 
