@@ -8,7 +8,7 @@
       </button>
       
       <div class="offset1">
-      <a class="brand" href="./index.html">Flitter</a>
+      <a class="brand" href="/users/login">Flitter</a>
       
       <div class="nav-collapse collapse offset1">
         <ul class="nav">
@@ -16,13 +16,13 @@
             <a href="./index.html">Home</a>
           </li>
           <li>
-            <a href="./getting-started.html">Post</a>
+            <a href="/post/index">Post</a>
           </li>
           <li>
-            <a href="./customize.html">Find</a>
+            <a href="/post/find">Find</a>
           </li>
           <li>
-            <a href="./customize.html">Profile</a>
+            <a href="/users/profile">Profile</a>
           </li>
         </ul>
       </div>
