@@ -30,7 +30,7 @@ table.user_list {
  * Override default bootstrap style
  */
 .navbar .brand {
-  color: #fff;
+  color: #FFFFFF;
   text-shadow: none;
 }
 
@@ -45,5 +45,9 @@ table.user_list {
 
 .navbar .nav>.active>a, .navbar .nav>.active>a:hover, .navbar .nav>.active>a:focus {
 	background-color: #BF0503;
-	color: #FFF;
+	color: #FFFFFF;
+}
+
+div.navbar div.navbar-inner ul.nav a:hover {
+    color: #FFFFFF; 
 }
