@@ -1,7 +1,4 @@
-<!-- 
-  OK to put some display logic in view 
-  Also using alternative syntax - this should be a mostly HTML file
--->
+<!-- Displays the user's profile -->
 <?php if (isset($user_name)): ?>
   <h3>Profile for <?=$user_name?></h3>
   <table>
@@ -14,6 +11,8 @@
       <td>value</td>
     </tr>
   </table>
+
+<!-- No user specified -->
 <?php else: ?>
   <h3>No user has been specified</h3>
 <?php endif; ?>
