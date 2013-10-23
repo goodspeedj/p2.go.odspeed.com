@@ -7,8 +7,15 @@ class users_controller extends base_controller {
     } 
 
 
+    /**
+     * Main index page - lists all users
+     */
     public function index() {
-        echo "This is the index page";
+
+        $this->template->content = View::instance('v_users_index');
+        $this->template->title = "User list";
+        
+        echo $this->template;
     }
 
 
@@ -18,6 +25,8 @@ class users_controller extends base_controller {
     public function signup() {
 
         $this->template->content = View::instance('v_users_signup');
+        $this->template->title = "Sign up";
+
         echo $this->template;
 
     }
@@ -128,17 +137,6 @@ class users_controller extends base_controller {
         echo $this->template;
     }
 
-    public function remove() {
-        echo "This is the signup page";
-    }
-
-    public function search() {
-        echo "This is the signup page";
-    }
-
-    public function view() {
-        echo "This is the signup page";
-    }
 
     /* 
      * URL structure for parameter is http://host/controler/method/paramter
