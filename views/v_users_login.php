@@ -11,7 +11,7 @@
     </label>
     -->
     <p>&nbsp;</p>
-    <button class="btn btn-primary" type="submit">Log in</button>
+    <button class="btn btn-danger" type="submit">Log in</button>
   </form>
 
 </div>
