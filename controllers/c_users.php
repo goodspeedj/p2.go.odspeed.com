@@ -144,6 +144,15 @@ class users_controller extends base_controller {
         // pass the user name parameter
         $this->template->content->user_name = $user_name;
 
+        $sql = "SELECT first_name, last_name, email
+                FROM users 
+                WHERE email = '".$user_name."'";
+
+        $user_details = DB::instance(DB_NAME)->select_row($sql);
+
+        // Pass the current user details to the view
+        $this->template->content->user_details = $user_details;
+
         // Display the view
         echo $this->template;
     }
