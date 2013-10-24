@@ -1,7 +1,7 @@
 <?php if (isset($user_name)): ?>
 
   <h3>Profile for <?=$user_name?></h3>
-  <form role="form">
+  <form method="POST" action="/users/p_edit">
     <div class="form-group">
       <label for="first_name">First Name</label>
       <input type="text" class="form-control" value="<?=$user_details['first_name'] ?>" id="first_name">
