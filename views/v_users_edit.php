@@ -9,6 +9,8 @@
       <input type="text" class="form-control" value="<?=$user_details['last_name'] ?>" id="last_name">
       <label for="email">Email</label>
       <input type="email" class="form-control" value="<?=$user_details['email'] ?>" id="email">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" value="<?=$user_details['password'] ?>" id="password">
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>

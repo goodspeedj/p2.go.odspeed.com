@@ -144,7 +144,7 @@ class users_controller extends base_controller {
         // pass the user name parameter
         $this->template->content->user_name = $user_name;
 
-        $sql = "SELECT first_name, last_name, email
+        $sql = "SELECT first_name, last_name, email, password
                 FROM users 
                 WHERE email = '".$user_name."'";
 
@@ -155,6 +155,24 @@ class users_controller extends base_controller {
 
         // Display the view
         echo $this->template;
+    }
+
+
+    public function p_edit() {
+        // Add created time to $_POST data
+        $_POST['modified'] = Time::now();
+
+        // Add the token record
+        $_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
+
+        // Encrypt the password
+        $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
+
+        // Insert the user information
+        DB::instance(DB_NAME)->insert_row('users', $_POST);
+
+        // Redirect after signup to login
+        Router::redirect('/users/login');
     }
 
 
