@@ -6,7 +6,10 @@
   <input type="text" name="last_name" placeholder="Last Name"><br />
   <input type="text" name="email" placeholder="Email address"><br />
   <input type="password" name="password" placeholder="Password"><br />
+  <input type="file" name="user_icon" placeholder="Image file"><br />
 
-  <button class="btn btn-primary" type="submit">Sign up</button>
+  <br />
+  <button class="btn btn-danger" type="submit">Sign up</button>
+
   
 </form>
