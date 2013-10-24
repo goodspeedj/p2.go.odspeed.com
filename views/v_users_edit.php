@@ -4,13 +4,13 @@
   <form method="POST" action="/users/p_edit">
     <div class="form-group">
       <label for="first_name">First Name</label>
-      <input type="text" class="form-control" value="<?=$user_details['first_name'] ?>" id="first_name">
+      <input type="text" class="form-control" value="<?=$user_details['first_name'] ?>" name="first_name">
       <label for="last_name">Last Name</label>
-      <input type="text" class="form-control" value="<?=$user_details['last_name'] ?>" id="last_name">
+      <input type="text" class="form-control" value="<?=$user_details['last_name'] ?>" name="last_name">
       <label for="email">Email</label>
-      <input type="email" class="form-control" value="<?=$user_details['email'] ?>" id="email">
+      <input type="email" class="form-control" value="<?=$user_details['email'] ?>" name="email">
       <label for="password">Password</label>
-      <input type="password" class="form-control" value="<?=$user_details['password'] ?>" id="password">
+      <input type="password" class="form-control" placeholder="Password" name="password">
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
