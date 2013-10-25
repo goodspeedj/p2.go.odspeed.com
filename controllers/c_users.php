@@ -185,6 +185,10 @@ class users_controller extends base_controller {
      */
     public function profile($user_name = NULL) {
 
+        if(!$this->user) {
+            Router::redirect('/users/login');
+        }
+
         // Setup the view
         $this->template->content = View::instance('v_users_profile');
         $this->template->title = "Profile";
