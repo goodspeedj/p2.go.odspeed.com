@@ -128,9 +128,9 @@ class users_controller extends base_controller {
         DB::instance(DB_NAME)->update('users', $data, 'WHERE user_id ='. $this->user->user_id);
 
 
+        // Delete the cookie
         setcookie('token', '', strtotime('-1 year'), '/');
         
-
         // Send user back to login page
         Router::redirect('/users/login');
     }
