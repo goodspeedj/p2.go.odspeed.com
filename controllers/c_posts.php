@@ -1,5 +1,5 @@
 <?php
-class post_controller extends base_controller {
+class posts_controller extends base_controller {
 
     public function __construct() {
         parent::__construct();
@@ -8,7 +8,7 @@ class post_controller extends base_controller {
     public function index() {
 
         // Setup the view
-        $this->template->content = View::instance('v_post_index');
+        $this->template->content = View::instance('v_posts_index');
         $this->template->title = "Post";
 
 
