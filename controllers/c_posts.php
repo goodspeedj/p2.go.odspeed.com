@@ -16,12 +16,16 @@ class post_controller extends base_controller {
         echo $this->template;
     }
 
-    public function search() {
+    public function add() {
         echo "This is the signup page";
     }
 
-    public function add() {
-        echo "This is the signup page";
+    public function p_add() {
+        $_POST['user_id'] = $this->user->user_id;
+        $_POST['created'] = Time::now();
+        $_POST['modified'] = Time::now();
+
+        DB::instance(DB_NAME)->insert('posts', $_POST);
     }
 
     public function edit() {

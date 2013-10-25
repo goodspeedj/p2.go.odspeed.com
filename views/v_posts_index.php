@@ -1,9 +1,11 @@
 <table width="100%">
   <tr>
     <td colspan="2">
-      <textarea class="form-control new_post" rows="3" cols="100" autofocus form="post">
-        Enter a new post...
-      </textarea>
+      <form method="post" action="/posts/p_add">
+        <textarea name="content" class="form-control new_post" rows="3" cols="100" autofocus form="post">Enter a new post...
+        </textarea>
+        <input type="Submit" value="Add new post">
+      </form>
     </td>
   </tr>
   <tr>
