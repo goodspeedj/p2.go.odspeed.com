@@ -16,13 +16,16 @@
               <a href="/index/index">Home</a>
             </li>
             <li>
-              <a href="/post/index">Post</a>
+              <a href="/posts/index">Post</a>
             </li>
             <li>
               <a href="/users/index">Users</a>
             </li>
             <li>
               <a href="/users/profile">Profile</a>
+            </li>
+            <li>
+              <a href="/users/logout">Logout</a>
             </li>
           </ul>
         </div>
