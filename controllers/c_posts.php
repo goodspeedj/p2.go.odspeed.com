@@ -32,9 +32,6 @@ class posts_controller extends base_controller {
         echo $this->template;
     }
 
-    public function add() {
-        echo "This is the signup page";
-    }
 
     public function p_add() {
         $_POST['user_id'] = $this->user->user_id;
@@ -45,6 +42,27 @@ class posts_controller extends base_controller {
 
         Router::redirect('/posts/index');
     }
+
+
+    public function users() {
+
+        // Setup the view
+        $this->template->content = View::instance('v_users_index');
+        $this->template->title = "User list";
+
+        // Get a list of the users
+        $sql = "SELECT first_name, last_name, email 
+                FROM users";
+
+        $users = DB::instance(DB_NAME)->select_rows($sql);
+
+        // Pass the user array to the view
+        $this->template->content->user_list = $users;
+        
+        // Display the view
+        echo $this->template;
+    }
+
 
     public function edit() {
         echo "This is the signup page";
