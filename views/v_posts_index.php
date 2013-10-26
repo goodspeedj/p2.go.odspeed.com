@@ -2,8 +2,8 @@
   <tr>
     <td colspan="2">
       <form method="post" action="/posts/p_add">
-        <textarea name="content" class="form-control new_post" rows="3" cols="100" autofocus form="post">Enter a new post...
-        </textarea>
+        <textarea name="content" class="form-control new_post" rows="3" cols="50" autofocus placeholder="Enter a new post..."></textarea>
+        <br />
         <input type="Submit" value="Add new post">
       </form>
     </td>
