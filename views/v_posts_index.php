@@ -7,14 +7,20 @@
         <input type="Submit" value="Add new post">
       </form>
     </td>
-  </tr>
+  </tr> 
+
+<?php foreach ($posts as $row): ?>
   <tr>
     <td>
       <img src="http://lorempixel.com/32/32/abstract/">
     </td>
     <td>
-      <span class="bold">User Name:</span><br />
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit...
+      <span class="bold">
+        <?php echo $row['first_name'] . " " . $row['last_name'] ?>
+      </span><br />
+      <?php echo $row['content'] ?>
     </td>
   </tr>
+<?php endforeach; ?>
+
 </table>
