@@ -47,17 +47,24 @@ class posts_controller extends base_controller {
     public function users() {
 
         // Setup the view
-        $this->template->content = View::instance('v_users_index');
+        $this->template->content = View::instance('v_posts_users');
         $this->template->title = "User list";
 
-        // Get a list of the users
-        $sql = "SELECT first_name, last_name, email 
-                FROM users";
+        // Get a list of users
+        $sql = "SELECT * FROM users";
 
         $users = DB::instance(DB_NAME)->select_rows($sql);
 
-        // Pass the user array to the view
-        $this->template->content->user_list = $users;
+        // Get a list of the connections
+        $sql = "SELECT *
+                FROM users_users
+                WHERE user_id = ".$this->user->user_id;
+
+        $connections = DB::instance(DB_NAME)->select_array($sql, 'user_id_followed');
+
+        // Pass the user and connections array to the view
+        $this->template->content->users = $users;
+        $this->template->content->connections = $connections;
         
         // Display the view
         echo $this->template;
