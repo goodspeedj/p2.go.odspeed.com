@@ -16,9 +16,9 @@
       </td>
       <td>
         <?php if (isset($connections[$user['user_id']])): ?>
-          <a class="btn btn-small btn-danger" href="#"><i class="icon-remove icon-white"></i>  Unfollow</a>
+          <a class="btn btn-small btn-danger" href="/posts/unfollow/<?=$user['user_id']?>"><i class="icon-remove icon-white"></i>  Unfollow</a>
         <?php else: ?>
-          <a class="btn btn-small btn-success" href="#"><i class="icon-ok icon-white"></i>  Follow</a>
+          <a class="btn btn-small btn-success" href="/posts/follow/<?=$user['user_id']?>"><i class="icon-ok icon-white"></i>  Follow</a>
         <?php endif; ?>
       </td>
     </tr>
