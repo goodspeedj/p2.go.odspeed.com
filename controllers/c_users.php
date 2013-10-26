@@ -12,21 +12,7 @@ class users_controller extends base_controller {
      */
     public function index() {
 
-        // Setup the view
-        $this->template->content = View::instance('v_users_index');
-        $this->template->title = "User list";
-
-        // Get a list of the users
-        $sql = "SELECT first_name, last_name, email 
-                FROM users";
-
-        $user_list = DB::instance(DB_NAME)->select_rows($sql);
-
-        // Pass the user array to the view
-        $this->template->content->user_list = $user_list;
-        
-        // Display the view
-        echo $this->template;
+        echo "Index";
     }
 
 
