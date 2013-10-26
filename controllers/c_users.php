@@ -65,7 +65,7 @@ class users_controller extends base_controller {
     /**
      * Display the login form
      */
-    public function login() {
+    public function login($error = NULL) {
 
         // Don't display the navigation bar on the login page
         //$this->template->hide_navbar = TRUE;
@@ -77,6 +77,8 @@ class users_controller extends base_controller {
             // Setup the view
             $this->template->content = View::instance('v_users_login');
             $this->template->title = "Login";
+
+            $this->template->content->error = $error;
 
             // Display the view
             echo $this->template;
@@ -106,7 +108,7 @@ class users_controller extends base_controller {
             Router::redirect('/posts/index');
         }
         else {
-            echo "Login incorrect.  Please try again.";
+            Router::redirect("/users/login/error");
         }
 
     }

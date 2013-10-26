@@ -50,3 +50,7 @@ table.user_list {
 div.navbar div.navbar-inner ul.nav a:hover {
     color: #FFFFFF; 
 }
+
+.alert-danger {
+  width: 400px;
+}

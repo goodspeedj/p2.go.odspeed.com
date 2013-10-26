@@ -5,11 +5,15 @@
     <input type="text" name="email" placeholder="Email address">
     <br />
     <input type="password" name="password" placeholder="Password">
-    <!--
-    <label class="checkbox">
-      <input type="checkbox" value="remember-me"> Remember me
-    </label>
-    -->
+    
+    <!-- Check for bad user name / password -->
+    <?php if(isset($error)): ?>
+      <div class='alert alert-danger'>
+        Login failed. Please double check your email and password.
+      </div>
+      <br>
+    <?php endif; ?>
+
     <p>&nbsp;</p>
     <button class="btn btn-danger" type="submit">Log in</button>
   </form>
