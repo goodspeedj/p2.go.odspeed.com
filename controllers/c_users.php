@@ -46,6 +46,17 @@ class users_controller extends base_controller {
         // Insert the user information
         DB::instance(DB_NAME)->insert_row('users', $_POST);
 
+        /* Make the user follow themselves
+        $data = Array(
+            "created"          => Time::now(),
+            "user_id"          => $this->user->user_id,
+            "user_id_followed" => $this->user->user_id
+            );
+        
+        # Do the insert
+        DB::instance(DB_NAME)->insert('users_users', $data);
+        */
+
         // Redirect after signup to login
         Router::redirect('/users/login');
     }
