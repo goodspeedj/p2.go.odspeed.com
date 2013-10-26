@@ -74,7 +74,7 @@ class users_controller extends base_controller {
         //$this->template->hide_navbar = TRUE;
 
         if (isset($_COOKIE['token'])) {
-            Router::redirect('/post/index');
+            Router::redirect('/posts/index');
         }
         else {
             // Setup the view
@@ -106,7 +106,7 @@ class users_controller extends base_controller {
 
         if($token) {
             setcookie('token', $token, strtotime('+1 year'), '/');
-            Router::redirect('/post/index');
+            Router::redirect('/posts/index');
         }
         else {
             echo "Login incorrect.  Please try again.";
