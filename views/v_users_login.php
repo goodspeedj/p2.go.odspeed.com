@@ -1,5 +1,3 @@
-<div class="container">
-
   <form class="form-signin" method="post" action="/users/p_login">
     <h3 class="form-signin-heading">Please sign in</h3>
     <input type="text" name="email" placeholder="Email address">
@@ -17,5 +15,3 @@
     <p>&nbsp;</p>
     <button class="btn btn-danger" type="submit">Log in</button>
   </form>
-
-</div>
