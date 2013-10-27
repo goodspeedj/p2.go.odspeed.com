@@ -17,11 +17,10 @@ body {
 	background-image: url('../img/desk-main.png');
 }
 
-table.user_list {
-	width: 80%;
-	padding: 5px;
-	margin: 20px;
-	border-bottom: 1px gray solid;
+table.user-list td {
+  padding: 7px;
+  padding-bottom: 10px;
+  border-bottom: 1px gray solid;
 }
 
 td.left {
