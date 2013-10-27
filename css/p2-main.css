@@ -24,6 +24,10 @@ table.user_list {
 	border-bottom: 1px gray solid;
 }
 
+td.left {
+  text-align: left;
+}
+
 
 /* 
  * Override default bootstrap style
@@ -53,4 +57,8 @@ div.navbar div.navbar-inner ul.nav a:hover {
 
 .alert-danger {
   width: 400px;
+}
+
+.follow-btn {
+  width: 70px;
 }
