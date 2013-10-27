@@ -35,7 +35,6 @@ class posts_controller extends base_controller {
                 WHERE users_users.user_id = '.$this->user->user_id.'
                 ORDER BY posts.created';
 
-        echo $sql;
 
         $posts = DB::instance(DB_NAME)->select_rows($sql);
 
