@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
       </button>
       
-      <div class="offset1">
+      <div class="offset2">
         <a class="brand" href="/users/login">Flitter</a>
         
         <div class="nav-collapse collapse offset1">
@@ -19,7 +19,7 @@
               <a href="/posts/index">Post</a>
             </li>
             <li>
-              <a href="/users/index">Users</a>
+              <a href="/posts/users">Users</a>
             </li>
             <li>
               <a href="/users/profile">Profile</a>
