@@ -4,7 +4,7 @@
       <form method="post" action="/posts/p_add">
         <textarea name="content" class="form-control new_post" rows="3" cols="50" autofocus placeholder="Enter a new post..."></textarea>
         <br />
-        <input type="Submit" value="Add new post">
+        <button class="btn btn-danger" type="submit">Add New Post</button>
       </form>
     </td>
   </tr> 
