@@ -14,7 +14,7 @@
     <td>
       <img src="http://lorempixel.com/32/32/abstract/">
     </td>
-    <td>
+    <td class="left">
       <span class="bold">
         <?php echo $row['first_name'] . " " . $row['last_name'] ?>
       </span><br />
