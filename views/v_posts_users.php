@@ -1,5 +1,5 @@
 <!-- Displays a list of users -->
-<table class="user-list">
+<table class="posts">
 
 <?php foreach ($users as $user): ?>
   

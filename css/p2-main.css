@@ -17,7 +17,7 @@ body {
 	background-image: url('../img/desk-main.png');
 }
 
-table.user-list td {
+table.posts td {
   padding: 7px;
   padding-bottom: 10px;
   border-bottom: 1px gray solid;

@@ -1,4 +1,4 @@
-<table width="100%">
+<table class="posts" width="100%">
   <tr>
     <td colspan="2">
       <form method="post" action="/posts/p_add">
