@@ -37,6 +37,10 @@
     </div>
     
   </div>
+
+  <div class="footer navbar navbar-fixed-bottom">
+    James Goodspeed - jgoodsp@fas.harvard.edu - CSCI E-15 - Project #2
+  </div>
   
   <script src="/js/jquery-2.0.3.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
