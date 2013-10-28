@@ -6,12 +6,13 @@ body {
   font-size: 16px;
 }
 
-.footer {
+#footer {
   padding-top: 15px;
   text-align: center;
   background: #D4D4D4;
   height: 35px;
   vertical-align: bottom;
+  border-top: solid 1px gray;
 }
 
 .new_post {
