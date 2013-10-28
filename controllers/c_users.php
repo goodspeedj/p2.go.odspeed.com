@@ -138,23 +138,25 @@ class users_controller extends base_controller {
     /**
      * Edit the user profile
      */
-    public function edit($user_name = NULL) {
+    public function edit($user_id = NULL) {
 
         // Setup the view
         $this->template->content = View::instance('v_users_edit');
         $this->template->title = "Edit Profile";
 
-        // pass the user name parameter
-        $this->template->content->user_name = $user_name;
 
-        $sql = "SELECT user_id, first_name, last_name, email, password
-                FROM users 
-                WHERE email = '".$user_name."'";
+        // Only query if we have a user id
+        if ($user_id) {
 
-        $user_details = DB::instance(DB_NAME)->select_row($sql);
+            $sql = "SELECT * 
+                FROM users
+                WHERE user_id = ".$user_id;
 
-        // Pass the current user details to the view
-        $this->template->content->user_details = $user_details;
+            $user_details = DB::instance(DB_NAME)->select_row($sql);
+
+            // pass the user name parameter
+            $this->template->content->user_details = $user_details;
+        }
 
         // Display the view
         echo $this->template;
@@ -179,7 +181,7 @@ class users_controller extends base_controller {
         DB::instance(DB_NAME)->update("users", $data, "WHERE user_id = ".$_POST['user_id']);
 
         // Redirect after signup to login
-        Router::redirect('/users/profile/'.$_POST['email']);
+        Router::redirect('/users/profile/'.$_POST['user_id']);
     }
 
 
@@ -204,11 +206,10 @@ class users_controller extends base_controller {
                 WHERE user_id = ".$user_id;
 
             $user_details = DB::instance(DB_NAME)->select_row($sql);
-        }
-        
 
-        // pass the user name parameter
-        $this->template->content->user_details = $user_details;
+            // pass the user name parameter
+            $this->template->content->user_details = $user_details;
+        }
 
         // Display the view
         echo $this->template;

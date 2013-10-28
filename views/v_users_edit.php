@@ -1,6 +1,6 @@
-<?php if (isset($user_name)): ?>
+<?php if (isset($user_details)): ?>
 
-  <h3>Profile for <?=$user_name?></h3>
+  <h3>Profile for <?=$user_details['first_name']?> <?=$user_details['last_name'] ?></h3>
  
   <form method="POST" action="/users/p_edit">
   
@@ -19,7 +19,7 @@
       <label for="password">Password</label>
       <input type="password" class="form-control" placeholder="Password" name="password">
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" class="btn btn-danger">Submit</button>
  
   </form>
 
