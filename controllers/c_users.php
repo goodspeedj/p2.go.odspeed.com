@@ -186,7 +186,7 @@ class users_controller extends base_controller {
     /* 
      * URL structure for parameter is http://host/controler/method/paramter
      */
-    public function profile($user_name = NULL) {
+    public function profile($user_id = NULL) {
 
         if(!$this->user) {
             Router::redirect('/users/login');
@@ -196,8 +196,19 @@ class users_controller extends base_controller {
         $this->template->content = View::instance('v_users_profile');
         $this->template->title = "Profile";
 
+        // Only query if we have a user id
+        if ($user_id) {
+
+            $sql = "SELECT * 
+                FROM users
+                WHERE user_id = ".$user_id;
+
+            $user_details = DB::instance(DB_NAME)->select_row($sql);
+        }
+        
+
         // pass the user name parameter
-        $this->template->content->user_name = $user_name;
+        $this->template->content->user_details = $user_details;
 
         // Display the view
         echo $this->template;

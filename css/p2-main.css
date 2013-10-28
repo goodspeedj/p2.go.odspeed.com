@@ -36,6 +36,17 @@ td.left {
   text-align: left;
 }
 
+td.center {
+  text-align: center;
+}
+
+table.profile td {
+  padding: 7px;
+  padding-bottom: 10px;
+  padding-right: 30px;
+}
+
+
 
 /* 
  * Override default bootstrap style
