@@ -16,30 +16,42 @@
 </head>
 
 <body class="background-img">  
+  <div id="wrap">
 
-  <!-- 
-    Show or hide the nav bar.  Based on example from Piazza post #339
-    https://piazza.com/class/hktc23zr2apnf?cid=339
-  -->
-  <?php if(!$hide_navbar): ?>
-    <?=$navbar;?>
-  <?php endif; ?>
+    <!-- 
+      Show or hide the nav bar.  Based on example from Piazza post #339
+      https://piazza.com/class/hktc23zr2apnf?cid=339
+    -->
+    <?php if(!$hide_navbar): ?>
+      <?=$navbar;?>
+    <?php endif; ?>
 
-  <!-- Display main content -->
-  <div class="container">
-    <div class="row">
-    <div class="span3"></div>
-      <div class="span6 pagination-centered">
-        <?php if(isset($content)) echo $content; ?>
-        <?php if(isset($client_files_body)) echo $client_files_body; ?>
-      </div>
+    <!-- Display main content -->
+    <div class="container">
+      <div class="row">
       <div class="span3"></div>
+        <div class="span6 pagination-centered">
+          <?php if(isset($content)) echo $content; ?>
+          <?php if(isset($client_files_body)) echo $client_files_body; ?>
+        </div>
+        <div class="span3"></div>
+      </div>
+      
     </div>
-    
   </div>
 
-  <div id="footer" class="navbar navbar-fixed-bottom">
-    James Goodspeed - jgoodsp@fas.harvard.edu - CSCI E-15 - Project #2
+  <!-- Display the footer -->
+  <div class="container">
+    <div id="footer" class="navbar navbar-fixed-bottom">
+      <span class="footer-text">Jim Goodspeed</span>
+      <span class="footer-text">
+        <a href="mailto:jgoodsp@fas.harvard.edu">jgoodsp@fas.harvard.edu</a>
+      </span>
+      <span class="footer-text">CSCI E-15 Project #2</span>
+      <span class="footer-text">
+        <a href="https://github.com/goodspeedj/p2.go.odspeed.com">GitHub Repo</a>
+      </span>
+    </div>
   </div>
   
   <script src="/js/jquery-2.0.3.min.js"></script>

@@ -9,10 +9,26 @@ body {
 #footer {
   padding-top: 15px;
   text-align: center;
-  background: #D4D4D4;
+  background: #B2B2B2;
   height: 35px;
   vertical-align: bottom;
   border-top: solid 1px gray;
+  font-size: 14px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#footer a:link {
+  color: #333333;
+}
+
+#footer a:visited {
+  color: #333333;
+}
+
+.footer-text {
+  padding-right: 30px;
+  padding-left: 30px;
 }
 
 .new_post {

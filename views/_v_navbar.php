@@ -6,6 +6,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+
+      <?=$_SERVER['REQUEST_URI'];?>
       
       <div class="offset2">
         <a class="brand" href="/users/login">Flitter</a>
