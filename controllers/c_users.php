@@ -51,20 +51,27 @@ class users_controller extends base_controller {
         // Insert the user information
         DB::instance(DB_NAME)->insert_row('users', $_POST);
 
+        // Get the information on the user we just created
+        $sql = "SELECT * 
+                FROM users 
+                WHERE token = ".$_POST['token'];
+
+        $user_data = DB::instance(DB_NAME)->select_row($sql);
+
+        // Move the pictures to the right location on disk
         move_uploaded_file($_FILES["picture"]["tmp_name"],
-            "img/user_pics/" . $_FILES["picture"]["name"]);
+            "img/user_pics/" . $_FILES["picture"]["name"]."-".$user_data['user_id']);
 
 
-        /* Make the user follow themselves
+        // Make the user follow themselves
         $data = Array(
             "created"          => Time::now(),
-            "user_id"          => $this->user->user_id,
-            "user_id_followed" => $this->user->user_id
+            "user_id"          => $user_data['user_id'],
+            "user_id_followed" => $user_data['user_id']
             );
         
         # Do the insert
         DB::instance(DB_NAME)->insert('users_users', $data);
-        */
 
         // Redirect after signup to login
         Router::redirect('/users/login');
