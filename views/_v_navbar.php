@@ -8,7 +8,7 @@
       </button>
       
       <div class="offset2">
-        <a class="brand" href="/users/login">Flitter</a>
+        <a class="brand" href="/index/index">Flitter</a>
         
         <div class="nav-collapse collapse offset1">
           <ul class="nav">
@@ -44,7 +44,7 @@
           <?php endif; ?>
               <a href="/users/profile">Profile</a>
             </li>
-            
+
             <li>
               <a href="/users/logout">Logout</a>
             </li>
