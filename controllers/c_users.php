@@ -167,7 +167,7 @@ class users_controller extends base_controller {
             $sql = "SELECT * 
                     FROM users
                     WHERE user_id = ".$user_id." 
-                    AND user_id = ". $this->user_id;
+                    AND user_id = ". $this->user_id;    // user_id must match logged in user
 
             $user_details = DB::instance(DB_NAME)->select_row($sql);
 
