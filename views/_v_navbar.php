@@ -37,12 +37,12 @@
               <a href="/posts/users">Users</a>
             </li>
 
-          <?php if($_SERVER['REQUEST_URI'] == "/users/profile"): ?>
+          <?php if(($_SERVER['REQUEST_URI'] == "/users/profile/") || ($_SERVER['REQUEST_URI'] == "/users/profile/<?=$user->user_id?>"): ?>
             <li class="active">
           <?php else: ?>
             <li>
           <?php endif; ?>
-              <a href="/users/profile">Profile</a>
+              <a href="/users/profile/<?=$user->user_id?>">Profile</a>
             </li>
 
             <li>
