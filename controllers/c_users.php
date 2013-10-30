@@ -180,6 +180,9 @@ class users_controller extends base_controller {
     }
 
 
+    /*
+     * Process the user profile edit page
+     */
     public function p_edit() {
         // Add created time to $_POST data
         $_POST['modified'] = Time::now();
