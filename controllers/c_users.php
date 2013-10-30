@@ -34,6 +34,11 @@ class users_controller extends base_controller {
      */
     public function p_signup() {
 
+        $dir = "img/user_pics";
+
+        // Picture file name
+        $_POST['picture'] = $_FILES['picture']['name'];
+
         // Add created time to $_POST data
         $_POST['created'] = Time::now();
 
@@ -45,6 +50,10 @@ class users_controller extends base_controller {
 
         // Insert the user information
         DB::instance(DB_NAME)->insert_row('users', $_POST);
+
+        move_uploaded_file($_FILES["picture"]["tmp_name"],
+            "img/user_pics/" . $_FILES["picture"]["name"]);
+
 
         /* Make the user follow themselves
         $data = Array(
