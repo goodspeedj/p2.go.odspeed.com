@@ -54,15 +54,19 @@ class users_controller extends base_controller {
         // Get the information on the user we just created
         $sql = "SELECT *
                 FROM users 
-                WHERE token = ".$_POST['token']."
+                WHERE token = '".$_POST['token']."'
                 AND created = ". $_POST['created'];
 
         $user_data = DB::instance(DB_NAME)->select_row($sql);
 
         // Move the pictures to the right location on disk
         move_uploaded_file($_FILES["picture"]["tmp_name"],
-            "img/user_pics/" . $_FILES["picture"]["name"]."-".$user_data['user_id']);
+            "img/user_pics/" .$user_data['user_id'].'-'.$_FILES["picture"]["name"]);
 
+        // Update the picture name - append the user_id.  Prevents duplicate file names
+        $pic_data = Array("picture" => $user_data['user_id'].'-'.$_FILES["picture"]["name"]);
+    
+        DB::instance(DB_NAME)->update("users", $pic_data, "WHERE user_id = ". $user_data['user_id']);
 
         // Make the user follow themselves
         $data = Array(

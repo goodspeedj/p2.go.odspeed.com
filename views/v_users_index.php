@@ -4,7 +4,11 @@
 <?php foreach ($user_list as $row): ?>
     <tr>
       <td>
-        <img src="http://lorempixel.com/32/32/abstract/">
+        <?php if ($row['picture']): ?>
+          <img src="/img/user_pics/<?= $row['picture']?>">
+        <?php else: ?>
+          <img src="/img/user_pics/avatar.jpg">
+        <?php endif; ?>
       </td>
       <td>
         <span class="bold">User Name: </span>
