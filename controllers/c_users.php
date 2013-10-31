@@ -162,21 +162,28 @@ class users_controller extends base_controller {
 
 
         // Only query if we have a user id
-        if ($user_id) {
+        if ($user_id == $this->user->user_id) {
 
             $sql = "SELECT * 
                     FROM users
                     WHERE user_id = ".$user_id." 
-                    AND user_id = ". $this->user_id;    // user_id must match logged in user
+                    AND user_id = ". $this->user->user_id;    // user_id must match logged in user
 
             $user_details = DB::instance(DB_NAME)->select_row($sql);
 
             // pass the user name parameter
             $this->template->content->user_details = $user_details;
+
+            // Display the view
+            echo $this->template;
         }
 
-        // Display the view
-        echo $this->template;
+        // If the user_id does not match the logged in user send them back to their own
+        // profile - prevents URL manipulation
+        else {
+            Router::redirect('/users/edit/'.$this->user->user_id);
+        }
+
     }
 
 
@@ -207,8 +214,15 @@ class users_controller extends base_controller {
      */
     public function profile($user_id = NULL) {
 
-        if(!$this->user) {
+        // If they are not logged in send them back to the login page
+        if (!$this->user) {
             Router::redirect('/users/login');
+        }
+
+        // If the user_id does not match that of the user logged in send 
+        // them back to their own profile
+        if ($this->user->user_id != $user_id) {
+            Router::redirect('/users/profile/'.$this->user->user_id);
         }
 
         // Setup the view
