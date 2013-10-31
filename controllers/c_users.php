@@ -52,9 +52,10 @@ class users_controller extends base_controller {
         DB::instance(DB_NAME)->insert_row('users', $_POST);
 
         // Get the information on the user we just created
-        $sql = "SELECT * 
+        $sql = "SELECT *
                 FROM users 
-                WHERE token = ".$_POST['token'];
+                WHERE token = ".$_POST['token']."
+                AND created = ". $_POST['created'];
 
         $user_data = DB::instance(DB_NAME)->select_row($sql);
 
