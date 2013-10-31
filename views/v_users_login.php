@@ -11,7 +11,8 @@
       </div>
       <br>
     <?php endif; ?>
-
+    <p><a href="/users/signup">Register for account</a></p>
     <p>&nbsp;</p>
+    
     <button class="btn btn-danger" type="submit">Log in</button>
   </form>

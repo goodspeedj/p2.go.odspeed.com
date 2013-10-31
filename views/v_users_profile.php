@@ -26,5 +26,5 @@
 
 <!-- No user specified -->
 <?php else: ?>
-  <h3>No user has been specified</h3>
+  <h4>No user specified</h4>
 <?php endif; ?>

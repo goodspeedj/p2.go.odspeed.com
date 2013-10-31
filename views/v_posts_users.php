@@ -5,7 +5,11 @@
   
     <tr>
       <td>
-        <img src="http://lorempixel.com/32/32/abstract/">
+        <?php if ($user['picture']): ?>
+          <img src="/img/user_pics/<?= $user['picture']?>">
+        <?php else: ?>
+          <img src="/img/user_pics/avatar.jpg">
+        <?php endif; ?>
       </td>
       <td class="left">
         <span class="bold">User Name: </span>

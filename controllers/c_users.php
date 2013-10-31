@@ -52,16 +52,21 @@ class users_controller extends base_controller {
         DB::instance(DB_NAME)->insert_row('users', $_POST);
 
         // Get the information on the user we just created
-        $sql = "SELECT * 
+        $sql = "SELECT *
                 FROM users 
-                WHERE token = ".$_POST['token'];
+                WHERE token = '".$_POST['token']."'
+                AND created = ". $_POST['created'];
 
         $user_data = DB::instance(DB_NAME)->select_row($sql);
 
         // Move the pictures to the right location on disk
         move_uploaded_file($_FILES["picture"]["tmp_name"],
-            "img/user_pics/" . $_FILES["picture"]["name"]."-".$user_data['user_id']);
+            "img/user_pics/" .$user_data['user_id'].'-'.$_FILES["picture"]["name"]);
 
+        // Update the picture name - append the user_id.  Prevents duplicate file names
+        $pic_data = Array("picture" => $user_data['user_id'].'-'.$_FILES["picture"]["name"]);
+    
+        DB::instance(DB_NAME)->update("users", $pic_data, "WHERE user_id = ". $user_data['user_id']);
 
         // Make the user follow themselves
         $data = Array(
@@ -162,21 +167,28 @@ class users_controller extends base_controller {
 
 
         // Only query if we have a user id
-        if ($user_id) {
+        if ($user_id == $this->user->user_id) {
 
             $sql = "SELECT * 
                     FROM users
                     WHERE user_id = ".$user_id." 
-                    AND user_id = ". $this->user_id;    // user_id must match logged in user
+                    AND user_id = ". $this->user->user_id;    // user_id must match logged in user
 
             $user_details = DB::instance(DB_NAME)->select_row($sql);
 
             // pass the user name parameter
             $this->template->content->user_details = $user_details;
+
+            // Display the view
+            echo $this->template;
         }
 
-        // Display the view
-        echo $this->template;
+        // If the user_id does not match the logged in user send them back to their own
+        // profile - prevents URL manipulation
+        else {
+            Router::redirect('/users/edit/'.$this->user->user_id);
+        }
+
     }
 
 
@@ -210,8 +222,15 @@ class users_controller extends base_controller {
      */
     public function profile($user_id = NULL) {
 
-        if(!$this->user) {
+        // If they are not logged in send them back to the login page
+        if (!$this->user) {
             Router::redirect('/users/login');
+        }
+
+        // If the user_id does not match that of the user logged in send 
+        // them back to their own profile
+        if ($this->user->user_id != $user_id) {
+            Router::redirect('/users/profile/'.$this->user->user_id);
         }
 
         // Setup the view
