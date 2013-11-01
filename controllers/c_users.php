@@ -60,7 +60,7 @@ class users_controller extends base_controller {
         if ($result > 0) {
             Router::redirect("/users/signup/error");
         }
-        
+
         else {
            // Insert the user information
             DB::instance(DB_NAME)->insert_row('users', $_POST);
@@ -131,19 +131,25 @@ class users_controller extends base_controller {
         $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
 
         // Get the token
-        $sql = 'SELECT token 
+        $sql = 'SELECT token, email
                 FROM users
                 WHERE email  = "'.$_POST['email'].'"
                 AND password = "'.$_POST['password'].'"';
 
-        $token = DB::instance(DB_NAME)->select_field($sql);
+        $data = DB::instance(DB_NAME)->select_row($sql);
 
-        if($token) {
+        $token = $data['token'];
+        $email = $data['email'];
+
+        if ($token) {
             setcookie('token', $token, strtotime('+1 year'), '/');
             Router::redirect('/posts/index');
         }
+        elseif ($email == $_POST['email']) {
+            Router::redirect("/users/login/err_email");
+        }
         else {
-            Router::redirect("/users/login/error");
+            Router::redirect("/users/login/err_pwd");
         }
     }
 

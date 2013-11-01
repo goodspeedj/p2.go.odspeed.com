@@ -7,10 +7,19 @@
   <input type="password" name="password" placeholder="Password">
     
   <!-- Check for bad user name / password -->
-  <?php if(isset($error)): ?>
+  <?php if(isset($err_email)): ?>
 
     <div class='alert alert-danger'>
-      Login failed. Please double check your email and password.
+      Login failed, email account not found.
+    </div>
+    <br>
+
+  <?php endif; ?>
+
+  <?php if(isset($err_pwd)): ?>
+
+    <div class='alert alert-danger'>
+      Login failed, password incorrect.
     </div>
     <br>
 
