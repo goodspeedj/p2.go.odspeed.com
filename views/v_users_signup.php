@@ -1,12 +1,12 @@
 <!-- New user sign up form -->
 <h3>Sign up</h3>
 
-<form method="POST" action="/users/p_signup" enctype="multipart/form-data">
+<form id="form-signup" method="POST" action="/users/p_signup" enctype="multipart/form-data">
 
-  <input type="text" name="first_name" placeholder="First Name"><br />
-  <input type="text" name="last_name" placeholder="Last Name"><br />
-  <input type="text" name="email" placeholder="Email address"><br />
-  <input type="password" name="password" placeholder="Password"><br />
+  <input type="text" name="first_name" placeholder="First Name" required><br />
+  <input type="text" name="last_name" placeholder="Last Name" required><br />
+  <input type="email" name="email" placeholder="Email address" required><br />
+  <input type="password" name="password" placeholder="Password" required><br />
   <p>User Image</p>
   <input type="file" class="filestyle" name="piture" data-classInput="input-small" data-input="false">
 
@@ -23,3 +23,7 @@
   <button class="btn btn-danger" type="submit">Sign up</button>
  
 </form>
+
+<script>
+  $("#form-signup").validate();
+</script>
