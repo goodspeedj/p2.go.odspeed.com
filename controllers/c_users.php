@@ -48,38 +48,53 @@ class users_controller extends base_controller {
         // Encrypt the password
         $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
 
-        // Insert the user information
-        DB::instance(DB_NAME)->insert_row('users', $_POST);
 
-        // Get the information on the user we just created
-        $sql = "SELECT *
-                FROM users 
-                WHERE token = '".$_POST['token']."'
-                AND created = ". $_POST['created'];
+        // Prevent duplicate email addresses
+        $sql = "SELECT count(*)
+                FROM users
+                WHERE email = '". $_POST['email']."'"; 
 
-        $user_data = DB::instance(DB_NAME)->select_row($sql);
+        $result = DB::instance(DB_NAME)->select_row($sql);
 
-        // Move the pictures to the right location on disk and prepend the user_id to the file name
-        move_uploaded_file($_FILES["picture"]["tmp_name"],
-            "img/user_pics/" .$user_data['user_id'].'-'.$_FILES["picture"]["name"]);
-
-        // Update the picture name - append the user_id.  Prevents duplicate file names
-        $pic_data = Array("picture" => $user_data['user_id'].'-'.$_FILES["picture"]["name"]);
-    
-        DB::instance(DB_NAME)->update("users", $pic_data, "WHERE user_id = ". $user_data['user_id']);
-
-        // Make the user follow themselves
-        $data = Array(
-            "created"          => Time::now(),
-            "user_id"          => $user_data['user_id'],
-            "user_id_followed" => $user_data['user_id']
-            );
+        // If the email address is already registered throw an error
+        if ($result > 0) {
+            Router::redirect("/users/signup/error");
+        }
         
-        # Do the insert so they follow themselves
-        DB::instance(DB_NAME)->insert('users_users', $data);
+        else {
+           // Insert the user information
+            DB::instance(DB_NAME)->insert_row('users', $_POST);
 
-        // Redirect after signup to login
-        Router::redirect('/users/login');
+            // Get the information on the user we just created
+            $sql = "SELECT *
+                    FROM users 
+                    WHERE token = '".$_POST['token']."'
+                    AND created = ". $_POST['created'];
+
+            $user_data = DB::instance(DB_NAME)->select_row($sql);
+
+            // Move the pictures to the right location on disk and prepend the user_id to the file name
+            move_uploaded_file($_FILES["picture"]["tmp_name"],
+                "img/user_pics/" .$user_data['user_id'].'-'.$_FILES["picture"]["name"]);
+
+            // Update the picture name - append the user_id.  Prevents duplicate file names
+            $pic_data = Array("picture" => $user_data['user_id'].'-'.$_FILES["picture"]["name"]);
+        
+            DB::instance(DB_NAME)->update("users", $pic_data, "WHERE user_id = ". $user_data['user_id']);
+
+            // Make the user follow themselves
+            $data = Array(
+                "created"          => Time::now(),
+                "user_id"          => $user_data['user_id'],
+                "user_id_followed" => $user_data['user_id']
+                );
+            
+            # Do the insert so they follow themselves
+            DB::instance(DB_NAME)->insert('users_users', $data);
+
+            // Redirect after signup to login
+            Router::redirect('/users/login'); 
+        }        
     }
 
 
