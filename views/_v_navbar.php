@@ -13,54 +13,55 @@
         <div class="nav-collapse collapse offset1">
           <ul class="nav">
 
-            <!-- Determine which navbar button is highlighted -->
-            <?php if (($_SERVER['REQUEST_URI'] == "/index/index") || ($_SERVER['REQUEST_URI'] == "/index") || ($_SERVER['REQUEST_URI'] == "/")): ?>
-              <li class="active">
-            <?php else: ?>
-              <li>
-            <?php endif; ?>
-                <a href="/index/index">Home</a>
-              </li>
-
-            <?php if($_SERVER['REQUEST_URI'] == "/posts/index"): ?>
-              <li class="active">
-            <?php else: ?>
-              <li>
-            <?php endif; ?>
-                <a href="/posts/index">Post</a>
-              </li>
-
-            <?php if ($_SERVER['REQUEST_URI'] == "/posts/users"): ?>
-              <li class="active">
-            <?php else: ?>
-              <li>
-            <?php endif; ?>
-                <a href="/posts/users">Users</a>
-              </li>
-
-            <!-- Modify the link based on the user_id -->
-            <?php if (isset($user->user_id)): ?>
-
-              <?php if ($_SERVER['REQUEST_URI'] == "/users/profile/".$user->user_id): ?>
-                <li class="active">
-              <?php else: ?>
-                <li>
-              <?php endif; ?>
-                  <a href="/users/profile/<?=$user->user_id?>">Profile</a>
-
-            <?php else: ?>
-
-              <?php if ($_SERVER['REQUEST_URI'] == "/users/profile"): ?>
-                <li class="active">
-              <?php else: ?>
-                <li>
-              <?php endif; ?>
-                  <a href="/users/profile">Profile</a>
-                  
-            <?php endif; ?>
-              
+            <!-- 
+              Determine which navbar button is highlighted 
+            -->
+          <?php if (($_SERVER['REQUEST_URI'] == "/index/index") || ($_SERVER['REQUEST_URI'] == "/index") || ($_SERVER['REQUEST_URI'] == "/")): ?>
+            <li class="active">
+          <?php else: ?>
+            <li>
+          <?php endif; ?>
+              <a href="/index/index">Home</a>
             </li>
 
+          <?php if($_SERVER['REQUEST_URI'] == "/posts/index"): ?>
+            <li class="active">
+          <?php else: ?>
+            <li>
+          <?php endif; ?>
+              <a href="/posts/index">Post</a>
+            </li>
+
+          <?php if ($_SERVER['REQUEST_URI'] == "/posts/users"): ?>
+            <li class="active">
+          <?php else: ?>
+            <li>
+          <?php endif; ?>
+              <a href="/posts/users">Users</a>
+            </li>
+
+            <!-- Modify the link based on the user_id -->
+          <?php if (isset($user->user_id)): ?>
+
+            <?php if ($_SERVER['REQUEST_URI'] == "/users/profile/".$user->user_id): ?>
+            <li class="active">
+            <?php else: ?>
+            <li>
+            <?php endif; ?>
+              <a href="/users/profile/<?=$user->user_id?>">Profile</a>
+
+          <?php else: ?>
+
+            <?php if ($_SERVER['REQUEST_URI'] == "/users/profile"): ?>
+            <li class="active">
+            <?php else: ?>
+            <li>
+            <?php endif; ?>
+              <a href="/users/profile">Profile</a>
+                  
+          <?php endif; ?>
+              
+            </li>
             <li>
               <a href="/users/logout">Logout</a>
             </li>

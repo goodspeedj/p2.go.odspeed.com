@@ -1,3 +1,4 @@
+<!-- Displays the user profile edit form -->
 <?php if (isset($user_details)): ?>
 
   <h3>Profile for <?=$user_details['first_name']?> <?=$user_details['last_name'] ?></h3>

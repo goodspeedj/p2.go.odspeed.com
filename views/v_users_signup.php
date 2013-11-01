@@ -1,3 +1,4 @@
+<!-- New user sign up form -->
 <h3>Sign up</h3>
 
 <form method="POST" action="/users/p_signup" enctype="multipart/form-data">
@@ -11,6 +12,5 @@
 
   <p>&nbsp;</p>
   <button class="btn btn-danger" type="submit">Sign up</button>
-
-  
+ 
 </form>

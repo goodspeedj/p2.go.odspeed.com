@@ -17,10 +17,10 @@ class posts_controller extends base_controller {
 
         // Setup the view
         $this->template->content = View::instance('v_posts_index');
-        $this->template->title = "Post";
+        $this->template->title   = "Post";
 
         // Get the posts
-        $sql = 'SELECT 
+        $sql = "SELECT 
                     posts.content,
                     posts.created,
                     posts.user_id AS post_user_id,                       
@@ -33,8 +33,8 @@ class posts_controller extends base_controller {
                     ON posts.user_id = users_users.user_id_followed
                 INNER JOIN users 
                     ON posts.user_id = users.user_id
-                WHERE users_users.user_id = '.$this->user->user_id.'
-                ORDER BY posts.created DESC';
+                WHERE users_users.user_id = ".$this->user->user_id."
+                ORDER BY posts.created DESC";
 
 
         $posts = DB::instance(DB_NAME)->select_rows($sql);
@@ -46,9 +46,12 @@ class posts_controller extends base_controller {
     }
 
 
+    /*
+     * Add new posts - keep them on the same page
+     */
     public function p_add() {
-        $_POST['user_id'] = $this->user->user_id;
-        $_POST['created'] = Time::now();
+        $_POST['user_id']  = $this->user->user_id;
+        $_POST['created']  = Time::now();
         $_POST['modified'] = Time::now();
 
         DB::instance(DB_NAME)->insert('posts', $_POST);
@@ -57,6 +60,9 @@ class posts_controller extends base_controller {
     }
 
 
+    /*
+     * Get a list of all users and allow them to follow different users
+     */
     public function users() {
 
         // Setup the view
@@ -84,7 +90,9 @@ class posts_controller extends base_controller {
     }
 
 
-
+    /*
+     * Follow users by adding connections to the users_users table
+     */
     public function follow($user_id_followed) {
         
         # Prepare the data array to be inserted
@@ -99,21 +107,23 @@ class posts_controller extends base_controller {
         
         # Send them back
         Router::redirect("/posts/users");
-        
     }
 
 
+    /*
+     * Unfollow users by deleting connections from the users_users table
+     */
     public function unfollow($user_id_followed) {
         
         # Set up the where condition
-        $where_condition = 'WHERE user_id = '.$this->user->user_id.' AND user_id_followed = '.$user_id_followed;
+        $where_condition = 'WHERE user_id = '.$this->user->user_id.' 
+                            AND user_id_followed = '.$user_id_followed;
             
         # Run the delete
         DB::instance(DB_NAME)->delete('users_users', $where_condition);
         
         # Send them back
         Router::redirect("/posts/users");
-        
-        }
+    }
 
 } # end of the class

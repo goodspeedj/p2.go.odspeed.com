@@ -8,11 +8,11 @@ class users_controller extends base_controller {
 
 
     /**
-     * Main index page - lists all users
+     * Main index page - direct them to login
      */
     public function index() {
 
-        echo "Index";
+        Router::redirect('/users/login');
     }
 
 
@@ -22,10 +22,9 @@ class users_controller extends base_controller {
     public function signup() {
 
         $this->template->content = View::instance('v_users_signup');
-        $this->template->title = "Sign up";
+        $this->template->title   = "Sign up";
 
         echo $this->template;
-
     }
 
 
@@ -34,6 +33,7 @@ class users_controller extends base_controller {
      */
     public function p_signup() {
 
+        // directory to store image files
         $dir = "img/user_pics";
 
         // Picture file name
@@ -59,7 +59,7 @@ class users_controller extends base_controller {
 
         $user_data = DB::instance(DB_NAME)->select_row($sql);
 
-        // Move the pictures to the right location on disk
+        // Move the pictures to the right location on disk and prepend the user_id to the file name
         move_uploaded_file($_FILES["picture"]["tmp_name"],
             "img/user_pics/" .$user_data['user_id'].'-'.$_FILES["picture"]["name"]);
 
@@ -75,7 +75,7 @@ class users_controller extends base_controller {
             "user_id_followed" => $user_data['user_id']
             );
         
-        # Do the insert
+        # Do the insert so they follow themselves
         DB::instance(DB_NAME)->insert('users_users', $data);
 
         // Redirect after signup to login
@@ -88,23 +88,22 @@ class users_controller extends base_controller {
      */
     public function login($error = NULL) {
 
-        // Don't display the navigation bar on the login page
-        //$this->template->hide_navbar = TRUE;
-
+        // Bypass the login if the user has a cookie
         if (isset($_COOKIE['token'])) {
             Router::redirect('/posts/index');
         }
+
+        // Otherwise display the login form
         else {
             // Setup the view
             $this->template->content = View::instance('v_users_login');
-            $this->template->title = "Login";
+            $this->template->title   = "Login";
 
             $this->template->content->error = $error;
 
             // Display the view
             echo $this->template;
         }
-
     }
 
 
@@ -119,7 +118,7 @@ class users_controller extends base_controller {
         // Get the token
         $sql = 'SELECT token 
                 FROM users
-                WHERE email = "'.$_POST['email'].'"
+                WHERE email  = "'.$_POST['email'].'"
                 AND password = "'.$_POST['password'].'"';
 
         $token = DB::instance(DB_NAME)->select_field($sql);
@@ -131,7 +130,6 @@ class users_controller extends base_controller {
         else {
             Router::redirect("/users/login/error");
         }
-
     }
 
 
@@ -188,7 +186,6 @@ class users_controller extends base_controller {
         else {
             Router::redirect('/users/edit/'.$this->user->user_id);
         }
-
     }
 
 
@@ -196,6 +193,7 @@ class users_controller extends base_controller {
      * Process the user profile edit page
      */
     public function p_edit() {
+
         // Add created time to $_POST data
         $_POST['modified'] = Time::now();
 
@@ -208,7 +206,7 @@ class users_controller extends base_controller {
             "last_name"  => $_POST['last_name'],
             "email"      => $_POST['email'],
             "location"   => $_POST['location'],
-            "bio"   => $_POST['bio'],
+            "bio"        => $_POST['bio'],
             "password"   => $_POST['password'] 
             );
 
@@ -220,7 +218,7 @@ class users_controller extends base_controller {
 
 
     /* 
-     * URL structure for parameter is http://host/controler/method/paramter
+     * Display the profile page
      */
     public function profile($user_id = NULL) {
 
@@ -243,8 +241,8 @@ class users_controller extends base_controller {
         if ($user_id) {
 
             $sql = "SELECT * 
-                FROM users
-                WHERE user_id = ".$user_id;
+                    FROM users
+                    WHERE user_id = ".$user_id;
 
             $user_details = DB::instance(DB_NAME)->select_row($sql);
 
