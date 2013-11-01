@@ -13,6 +13,13 @@
       <li>The ability to upload a picture or icon to display next to your posts</li>
     </ul>
     <p>&nbsp;</p>
+    <p>Libraries used for this project include:</p>
+    <ul>
+      <li>Bootstrap</li>
+      <li>jQuery</li>
+      <li>Bootstrap File Style</li>
+    </ul>
+    <p>&nbsp;</p>
     <p>Please <a href="/users/login">Login</a> or <a href="/users/signup">Sign up</a></p>
   </div>
 
