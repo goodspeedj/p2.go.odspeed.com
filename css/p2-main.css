@@ -31,6 +31,10 @@ body {
   padding-left: 30px;
 }
 
+.left {
+  text-align: left;
+}
+
 .new_post {
   width: 70%;
 }

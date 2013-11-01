@@ -14,7 +14,7 @@
           <ul class="nav">
 
             <!-- Determine which navbar button is highlighted -->
-            <?php if($_SERVER['REQUEST_URI'] == "/index/index"): ?>
+            <?php if (($_SERVER['REQUEST_URI'] == "/index/index") || ($_SERVER['REQUEST_URI'] == "/index")): ?>
               <li class="active">
             <?php else: ?>
               <li>
