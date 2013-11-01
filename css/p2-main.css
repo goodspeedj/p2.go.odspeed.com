@@ -7,10 +7,11 @@ body {
 }
 
 #footer {
-  padding-top: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   text-align: center;
   background: #B2B2B2;
-  height: 35px;
+  height: 20px;
   vertical-align: bottom;
   border-top: solid 1px gray;
   font-size: 14px;
@@ -26,9 +27,33 @@ body {
   color: #333333;
 }
 
+#file_upload {
+  position: relative;
+}
+
+div.hidden_file {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+}
+
+input.file {
+  position: relative;
+  text-align: right;
+  -moz-opacity:0 ;
+  filter:alpha(opacity: 0);
+  opacity: 0;
+  z-index: 2;
+}
+
 .footer-text {
   padding-right: 30px;
   padding-left: 30px;
+}
+
+.left {
+  text-align: left;
 }
 
 .new_post {

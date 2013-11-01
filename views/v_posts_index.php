@@ -13,9 +13,9 @@
   <tr>
     <td>
       <?php if ($row['picture']): ?>
-        <img src="/img/user_pics/<?= $row['picture']?>">
+        <img src="/img/user_pics/<?= $row['picture']?>" alt="Avatar">
       <?php else: ?>
-        <img src="/img/user_pics/avatar.jpg">
+        <img src="/img/user_pics/avatar.jpg" alt="Default Avatar">
       <?php endif; ?>
     </td>
     <td class="left">
