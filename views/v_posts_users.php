@@ -6,9 +6,9 @@
     <tr>
       <td>
         <?php if ($user['picture']): ?>
-          <img src="/img/user_pics/<?= $user['picture']?>">
+          <img src="/img/user_pics/<?= $user['picture']?>" alt="Avatar">
         <?php else: ?>
-          <img src="/img/user_pics/avatar.jpg">
+          <img src="/img/user_pics/avatar.jpg" alt="Default Avatar">
         <?php endif; ?>
       </td>
       <td class="left">
