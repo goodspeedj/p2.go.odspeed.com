@@ -26,6 +26,26 @@ body {
   color: #333333;
 }
 
+#file_upload {
+  position: relative;
+}
+
+div.hidden_file {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+}
+
+input.file {
+  position: relative;
+  text-align: right;
+  -moz-opacity:0 ;
+  filter:alpha(opacity: 0);
+  opacity: 0;
+  z-index: 2;
+}
+
 .footer-text {
   padding-right: 30px;
   padding-left: 30px;
