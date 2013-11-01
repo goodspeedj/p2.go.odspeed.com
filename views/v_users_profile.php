@@ -17,6 +17,14 @@
       <td class="left"><?= $user_details['email']?></td>
     </tr>
     <tr>
+      <td class="bold left">Location:</td>
+      <td class="left"><?= $user_details['location']?></td>
+    </tr>
+    <tr>
+      <td class="bold left">Bio:</td>
+      <td class="left"><?= $user_details['bio']?></td>
+    </tr>
+    <tr>
       <td class="center" colspan="2">
         <p>&nbsp;</p>
         <a href="/users/edit/<?= $user_details['user_id']?>" class="center btn btn-danger">Edit Profile</a>

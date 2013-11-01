@@ -15,6 +15,12 @@
       
       <label for="email">Email</label>
       <input type="email" class="form-control" value="<?=$user_details['email'] ?>" name="email">
+
+      <label for="location">Location</label>
+      <input type="text" class="form-control" value="<?=$user_details['location'] ?>" name="location">
+
+      <label for="bio">Bio</label>
+      <textarea name="bio" class="form-control" rows="3" cols="50" value="<?=$user_details['bio'] ?>"></textarea>
       
       <label for="password">Password</label>
       <input type="password" class="form-control" placeholder="Password" name="password">
