@@ -19,10 +19,12 @@ class users_controller extends base_controller {
     /**
      * Display the user sign up form
      */
-    public function signup() {
+    public function signup($err = NULL) {
 
         $this->template->content = View::instance('v_users_signup');
         $this->template->title   = "Sign up";
+
+        $this->template->content->err = $err;
 
         echo $this->template;
     }
@@ -37,7 +39,12 @@ class users_controller extends base_controller {
         $dir = "img/user_pics";
 
         // Picture file name
-        $_POST['picture'] = $_FILES['picture']['name'];
+        if (empty($_FILES['picture']['name'])) {
+            $_POST['picture'] = NULL;
+        }
+        else {
+            $_POST['picture'] = $_FILES['picture']['name'];
+        }
 
         // Add created time to $_POST data
         $_POST['created'] = Time::now();

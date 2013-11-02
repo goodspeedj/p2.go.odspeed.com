@@ -10,10 +10,11 @@
   <p>User Image</p>
   <input type="file" class="filestyle" name="piture" data-classInput="input-small" data-input="false">
 
-  <?php if(isset($error)): ?>
+  <?php if(isset($err)): ?>
 
+    <p>&nbsp;</p>
     <div class='alert alert-danger'>
-      Signup failed, your email address is already registered.
+      Signup failed, email address is already registered.
     </div>
     <br>
 
