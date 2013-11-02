@@ -5,7 +5,7 @@ class posts_controller extends base_controller {
         parent::__construct();
 
         if(!$this->user) {
-            die("Members only");
+            Router::redirect('/users/login');
         }
     } 
 
