@@ -101,7 +101,7 @@ class users_controller extends base_controller {
     /**
      * Display the login form
      */
-    public function login($error = NULL) {
+    public function login($err= NULL) {
 
         // Bypass the login if the user has a cookie
         if (isset($_COOKIE['token'])) {
@@ -114,7 +114,7 @@ class users_controller extends base_controller {
             $this->template->content = View::instance('v_users_login');
             $this->template->title   = "Login";
 
-            $this->template->content->error = $error;
+            $this->template->content->err = $err;
 
             // Display the view
             echo $this->template;
@@ -141,15 +141,13 @@ class users_controller extends base_controller {
         $token = $data['token'];
         $email = $data['email'];
 
+
         if ($token) {
             setcookie('token', $token, strtotime('+1 year'), '/');
             Router::redirect('/posts/index');
         }
-        elseif ($email == $_POST['email']) {
-            Router::redirect("/users/login/err_email");
-        }
         else {
-            Router::redirect("/users/login/err_pwd");
+            Router::redirect("/users/login/err");
         }
     }
 
