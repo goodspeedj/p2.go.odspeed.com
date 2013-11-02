@@ -39,12 +39,7 @@ class users_controller extends base_controller {
         $dir = "img/user_pics";
 
         // Picture file name
-        if (empty($_FILES['picture']['name'])) {
-            $_POST['picture'] = NULL;
-        }
-        else {
-            $_POST['picture'] = $_FILES['picture']['name'];
-        }
+        $_POST['picture'] = $_FILES['picture']['name'];
 
         // Add created time to $_POST data
         $_POST['created'] = Time::now();
@@ -64,8 +59,8 @@ class users_controller extends base_controller {
         $result = DB::instance(DB_NAME)->select_row($sql);
 
         // If the email address is already registered throw an error
-        if ($result > 0) {
-            Router::redirect("/users/signup/error");
+        if ($result['count(*)'] > 0) {
+            Router::redirect("/users/signup/err");
         }
 
         else {
