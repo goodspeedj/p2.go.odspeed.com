@@ -31,7 +31,7 @@ A email designated to receive messages from the server. Examples:
 	define('SYSTEM_EMAIL', 'system@go.odspeed.com'); 
 
 # Default DB name for this app
-	define('DB_NAME', "p2_go_odspeed_com"); 
+	define('DB_NAME', "odspeedc_p2_go_odspeed_com"); 
 
 # Timezone
 	define('TIMEZONE', 'America/New_York');
