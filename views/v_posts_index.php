@@ -1,4 +1,4 @@
-<table class="posts" width="100%">
+<table class="posts">
 
   <!-- Display the post form -->
   <tr>
