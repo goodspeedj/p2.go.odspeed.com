@@ -3,12 +3,11 @@
   
   <h3>Profile for <?= $user_details['first_name'] ?> <?= $user_details['last_name'] ?></h3>
   <p>&nbsp;</p>
-  <table align="center" class="profile">
+  <table class="profile">
     <tr>
       <td class="bold left">First Name:</td>
       <td class="left"><?= $user_details['first_name']?></td>
     </tr>
-    <tr>
     <tr>
       <td class="bold left">Last Name:</td>
       <td class="left"><?= $user_details['last_name']?></td>
