@@ -9,22 +9,22 @@
       <input type="hidden" value="<?=$user_details['user_id'] ?>" name="user_id">
 
       <label for="first_name">First Name</label>
-      <input type="text" class="form-control" value="<?=$user_details['first_name'] ?>" name="first_name" required>
+      <input id="first_name" type="text" class="form-control" value="<?=$user_details['first_name'] ?>" name="first_name" required>
       
       <label for="last_name">Last Name</label>
-      <input type="text" class="form-control" value="<?=$user_details['last_name'] ?>" name="last_name" required>
+      <input id-"last_name" type="text" class="form-control" value="<?=$user_details['last_name'] ?>" name="last_name" required>
       
       <label for="email">Email</label>
-      <input type="email" class="form-control" value="<?=$user_details['email'] ?>" name="email" required>
+      <input id="email" type="email" class="form-control" value="<?=$user_details['email'] ?>" name="email" required>
 
       <label for="location">Location</label>
-      <input type="text" class="form-control" value="<?=$user_details['location'] ?>" name="location">
+      <input id="location" type="text" class="form-control" value="<?=$user_details['location'] ?>" name="location">
 
       <label for="bio">Bio</label>
-      <textarea name="bio" class="form-control" rows="3" cols="50" value="<?=$user_details['bio'] ?>"></textarea>
+      <textarea id="bio" name="bio" class="form-control" rows="3" cols="50"></textarea>
       
       <label for="password">Password</label>
-      <input type="password" class="form-control" placeholder="Password" name="password" required>
+      <input id="password" type="password" class="form-control" placeholder="Password" name="password" required>
     </div>
     <button type="submit" class="btn btn-danger">Submit</button>
  
