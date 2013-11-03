@@ -12,7 +12,7 @@
       <input id="first_name" type="text" class="form-control" value="<?=$user_details['first_name'] ?>" name="first_name" required>
       
       <label for="last_name">Last Name</label>
-      <input id-"last_name" type="text" class="form-control" value="<?=$user_details['last_name'] ?>" name="last_name" required>
+      <input id="last_name" type="text" class="form-control" value="<?=$user_details['last_name'] ?>" name="last_name" required>
       
       <label for="email">Email</label>
       <input id="email" type="email" class="form-control" value="<?=$user_details['email'] ?>" name="email" required>
