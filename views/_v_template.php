@@ -29,15 +29,15 @@
     <!-- Display main content -->
     <div class="container">
       <div class="row">
-      <div class="span3"></div>
+        <div class="span3"></div>
         <div class="span6 pagination-centered">
           <?php if(isset($content)) echo $content; ?>
           <?php if(isset($client_files_body)) echo $client_files_body; ?>
         </div>
         <div class="span3"></div>
       </div>
-      
     </div>
+
   </div>
 
   <!-- Display the footer -->
