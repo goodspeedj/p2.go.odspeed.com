@@ -18,9 +18,9 @@
     <td>
 
       <?php if ($row['picture']): ?>
-        <img src="/img/user_pics/<?= $row['picture']?>" alt="Avatar">
+        <img src="/img/user_pics/<?= $row['picture']?>" alt="Avatar" height="32" width="32">
       <?php else: ?>
-        <img src="/img/user_pics/avatar.jpg" alt="Default Avatar">
+        <img src="/img/user_pics/avatar.jpg" alt="Default Avatar" height="32" width="32">
       <?php endif; ?>
 
     </td>
