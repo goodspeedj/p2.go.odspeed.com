@@ -110,6 +110,7 @@ td.left {
 
 .navbar-inner {
   background-image: linear-gradient(to bottom,#4B4B4B,#3F3F3F);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#4B4B4B', endColorstr='#3F3F3F', GradientType=0);
 }
 
 .navbar .nav>li>a {
