@@ -16,6 +16,33 @@ class users_controller extends base_controller {
     }
 
 
+    /*
+     * File processing for picture upload
+     */
+    public function pic_upload($file) {
+
+        // Picture file size & type
+        $pic_size = $_POST['picture'] = $_FILES['picture']['size'];
+        $pic_type = $_POST['picture'] = $_FILES['picture']['type'];
+
+        $ok_type = array(
+            'image/jpeg',
+            'image/jpg',
+            'image/png',
+            'image/gif'
+            );
+
+        if ($pic_size > 1048576) {
+            Router::redirect("/users/signup/errors/size");
+        }
+        if (!in_array($pic_type, $ok_type)) {
+                Router::redirect("/users/signup/errors/type");
+        }
+
+        return $_FILES['picture']['name'];
+    }
+
+
     /**
      * Display the user sign up form
      */
@@ -41,29 +68,9 @@ class users_controller extends base_controller {
 
         // Run if picture uploaded
         if (isset($_FILES['picture'])) {
-
-            // Picture file name
-            $_POST['picture'] = $_FILES['picture']['name'];
-
-            // Picture file size & type
-            $pic_size = $_POST['picture'] = $_FILES['picture']['size'];
-            $pic_type = $_POST['picture'] = $_FILES['picture']['type'];
-
-            $ok_type = array(
-                'image/jpeg',
-                'image/jpg',
-                'image/png',
-                'image/gif'
-                );
-
-            if ($pic_size > 1048576) {
-                Router::redirect("/users/signup/errors/size");
-            }
-            if (!in_array($pic_type, $ok_type)) {
-                Router::redirect("/users/signup/errors/type");
-            }
-        }
-        
+            $pic_name = pic_upload($_FILES['picture']);  
+            $_POST['picture'] = $pic_name;
+        }        
 
         // Add created time to $_POST data
         $_POST['created'] = Time::now();
@@ -101,10 +108,10 @@ class users_controller extends base_controller {
 
             // Move the pictures to the right location on disk and prepend the user_id to the file name
             move_uploaded_file($_FILES["picture"]["tmp_name"],
-                "img/user_pics/" .$user_data['user_id'].'-'.$_FILES["picture"]["name"]);
+                "img/user_pics/" .$user_data['user_id'].'-'.$pic_name);
 
             // Update the picture name - append the user_id.  Prevents duplicate file names
-            $pic_data = Array("picture" => $user_data['user_id'].'-'.$_FILES["picture"]["name"]);
+            $pic_data = Array("picture" => $user_data['user_id'].'-'.$pic_name);
         
             DB::instance(DB_NAME)->update("users", $pic_data, "WHERE user_id = ". $user_data['user_id']);
 
@@ -245,15 +252,31 @@ class users_controller extends base_controller {
         // Encrypt the password
         $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
 
-        // Update the user information
-        $data = Array(
-            "first_name" => $_POST['first_name'],
-            "last_name"  => $_POST['last_name'],
-            "email"      => $_POST['email'],
-            "location"   => $_POST['location'],
-            "bio"        => $_POST['bio'],
-            "password"   => $_POST['password'] 
-            );
+        // Run if picture uploaded
+        if (isset($_FILES['picture'])) {
+            $pic = pic_upload($_FILES['picture']); 
+
+            $data = Array(
+                "first_name" => $_POST['first_name'],
+                "last_name"  => $_POST['last_name'],
+                "email"      => $_POST['email'],
+                "location"   => $_POST['location'],
+                "bio"        => $_POST['bio'],
+                "password"   => $_POST['password'],
+                "picture"    => $_POST['picture']
+                ); 
+        }
+        else {
+            $data = Array(
+                "first_name" => $_POST['first_name'],
+                "last_name"  => $_POST['last_name'],
+                "email"      => $_POST['email'],
+                "location"   => $_POST['location'],
+                "bio"        => $_POST['bio'],
+                "password"   => $_POST['password'] 
+                );  
+        }
+        
 
         DB::instance(DB_NAME)->update("users", $data, "WHERE user_id = ".$_POST['user_id']);
 
