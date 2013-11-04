@@ -13,6 +13,11 @@ div.hidden_file {
   z-index: 1;
 }
 
+img.avatar {
+  height: 32px;
+  width: 32px;
+}
+
 input.file {
   position: relative;
   text-align: right;

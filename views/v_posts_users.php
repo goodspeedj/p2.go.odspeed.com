@@ -9,9 +9,9 @@
 
         <!-- Display user picture/avatar -->
         <?php if ($user['picture']): ?>
-          <img src="/img/user_pics/<?= $user['picture']?>" alt="Avatar" height="32" width="32">
+          <img class="avatar" src="/img/user_pics/<?= $user['picture']?>" alt="Avatar" height="32" width="32">
         <?php else: ?>
-          <img src="/img/user_pics/avatar.jpg" alt="Default Avatar" height="32" width="32"
+          <img class="avatar" src="/img/user_pics/avatar.jpg" alt="Default Avatar" height="32" width="32"
         <?php endif; ?>
 
       </td>
