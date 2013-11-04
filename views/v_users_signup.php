@@ -8,7 +8,7 @@
   <input type="email" name="email" placeholder="Email address" required><br />
   <input type="password" name="password" placeholder="Password" required><br />
   <p>User Image</p>
-  <input type="file" class="filestyle" name="picture" data-classInput="input-small" data-input="false">
+  <input type="file" class="filestyle" name="picture" data-classInput="input-small">
 
 
   <!-- Error checking -->
