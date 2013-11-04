@@ -10,21 +10,33 @@
   <p>User Image</p>
   <input type="file" class="filestyle" name="picture" data-classInput="input-small" data-input="false">
 
-  <?php if(isset($err_size)): ?>
+
+  <!-- Error checking -->
+  <?php if(isset($errors) && isset($size)): ?>
 
     <p>&nbsp;</p>
     <div class='alert alert-danger'>
-      Signup failed, image size must be 1MB or smaller.
+      Please limit file sizes to 1MB or less.
     </div>
     <br>
 
   <?php endif; ?>
 
-  <?php if(isset($err)): ?>
+  <?php if(isset($errors) && isset($type)): ?>
 
     <p>&nbsp;</p>
     <div class='alert alert-danger'>
-      Signup failed, email address is already registered.
+      Please limit file types to JPG, JPEG, GIF or PNG.
+    </div>
+    <br>
+
+  <?php endif; ?>
+
+  <?php if(isset($errors) && isset($email)): ?>
+
+    <p>&nbsp;</p>
+    <div class='alert alert-danger'>
+      Email address is already registered.
     </div>
     <br>
 

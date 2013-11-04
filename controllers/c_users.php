@@ -19,13 +19,13 @@ class users_controller extends base_controller {
     /**
      * Display the user sign up form
      */
-    public function signup($err = NULL, $err_size = NULL) {
+    public function signup($errors = NULL, $source = NULL) {
 
         $this->template->content = View::instance('v_users_signup');
         $this->template->title   = "Sign up";
 
-        $this->template->content->err = $err;
-        $this->template->content->err_size = $err_size;
+        $this->template->content->errors = $errors;
+        $this->template->content->source = $source;
 
         echo $this->template;
     }
@@ -39,7 +39,7 @@ class users_controller extends base_controller {
         // directory to store image files
         $dir = "img/user_pics";
 
-
+        // Run if picture uploaded
         if (isset($_FILES['picture'])) {
 
             // Picture file name
@@ -49,10 +49,19 @@ class users_controller extends base_controller {
             $pic_size = $_POST['picture'] = $_FILES['picture']['size'];
             $pic_type = $_POST['picture'] = $_FILES['picture']['type'];
 
-            if ($size > 1048576) {
-                Router::redirect("/users/signup/err_size");
-            }
+            $ok_type = array(
+                'image/jpeg',
+                'image/jpg',
+                'image/png',
+                'image/gif'
+                );
 
+            if ($pic_size > 1048576) {
+                Router::redirect("/users/signup/errors/size");
+            }
+            if (!in_array($pic_type, $ok_type)) {
+                Router::redirect("/users/signup/errors/type");
+            }
         }
         
 
@@ -75,7 +84,7 @@ class users_controller extends base_controller {
 
         // If the email address is already registered throw an error
         if ($result['count(*)'] > 0) {
-            Router::redirect("/users/signup/err");
+            Router::redirect("/users/signup/errors/email");
         }
 
         else {
