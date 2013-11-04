@@ -19,12 +19,13 @@ class users_controller extends base_controller {
     /**
      * Display the user sign up form
      */
-    public function signup($err = NULL) {
+    public function signup($err = NULL, $err_size = NULL) {
 
         $this->template->content = View::instance('v_users_signup');
         $this->template->title   = "Sign up";
 
         $this->template->content->err = $err;
+        $this->template->content->err_size = $err_size;
 
         echo $this->template;
     }
@@ -38,8 +39,22 @@ class users_controller extends base_controller {
         // directory to store image files
         $dir = "img/user_pics";
 
-        // Picture file name
-        $_POST['picture'] = $_FILES['picture']['name'];
+
+        if (isset($_FILES['picture'])) {
+
+            // Picture file name
+            $_POST['picture'] = $_FILES['picture']['name'];
+
+            // Picture file size & type
+            $pic_size = $_POST['picture'] = $_FILES['picture']['size'];
+            $pic_type = $_POST['picture'] = $_FILES['picture']['type'];
+
+            if ($size > 1048576) {
+                Router::redirect("/users/signup/err_size");
+            }
+
+        }
+        
 
         // Add created time to $_POST data
         $_POST['created'] = Time::now();

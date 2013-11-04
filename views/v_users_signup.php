@@ -10,6 +10,16 @@
   <p>User Image</p>
   <input type="file" class="filestyle" name="picture" data-classInput="input-small" data-input="false">
 
+  <?php if(isset($err_size)): ?>
+
+    <p>&nbsp;</p>
+    <div class='alert alert-danger'>
+      Signup failed, image size must be 1MB or smaller.
+    </div>
+    <br>
+
+  <?php endif; ?>
+
   <?php if(isset($err)): ?>
 
     <p>&nbsp;</p>
