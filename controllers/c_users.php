@@ -68,7 +68,7 @@ class users_controller extends base_controller {
 
         // Run if picture uploaded
         if (isset($_FILES['picture'])) {
-            $pic_name = pic_upload($_FILES['picture']);  
+            $pic_name = $this->pic_upload($_FILES['picture']);  
             $_POST['picture'] = $pic_name;
         }        
 
@@ -254,7 +254,7 @@ class users_controller extends base_controller {
 
         // Run if picture uploaded
         if (isset($_FILES['picture'])) {
-            $pic = pic_upload($_FILES['picture']); 
+            $pic = $this->pic_upload($_FILES['picture']); 
 
             $data = Array(
                 "first_name" => $_POST['first_name'],
