@@ -25,7 +25,7 @@
       <td class="left"><?= $user_details['bio']?></td>
     </tr>
     <tr>
-      <td class="bold left">Avatar:</td>
+      <td class="bold left">Avatar image:</td>
       <td class="left">
         <img class="avatar" src="/img/user_pics/<?= $user_details['picture']?>" alt="Avatar" height="32" width="32">
       </td>
