@@ -27,7 +27,7 @@
       <input id="password" type="password" class="form-control" placeholder="Password" name="password" required>
 
       <label for="picture">Avatar image</label>
-      <input type="file" class="filestyle" name="picture" data-classInput="input-small">
+      <input id="picture" type="file" class="filestyle" name="picture" data-classInput="input-small">
     </div>
 
     <button type="submit" class="btn btn-danger">Submit</button>

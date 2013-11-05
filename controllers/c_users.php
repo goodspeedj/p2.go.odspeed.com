@@ -68,9 +68,27 @@ class users_controller extends base_controller {
 
         // Run if picture uploaded
         if (isset($_FILES['picture'])) {
-            $pic_name = $this->pic_upload($_FILES['picture']);  
+            // Picture file size & type
+            $pic_name = $_FILES['picture']['name'];
+            $pic_size = $_FILES['picture']['size'];
+            $pic_type = $_FILES['picture']['type'];
+
+            $ok_type = array(
+                'image/jpeg',
+                'image/jpg',
+                'image/png',
+                'image/gif'
+                );
+
+            if ($pic_size > 1048576) {
+                Router::redirect("/users/signup/errors/size");
+            }
+            if (!in_array($pic_type, $ok_type)) {
+                Router::redirect("/users/signup/errors/type");
+            }
+ 
             $_POST['picture'] = $pic_name;
-        }        
+        }  
 
         // Add created time to $_POST data
         $_POST['created'] = Time::now();
@@ -254,7 +272,26 @@ class users_controller extends base_controller {
 
         // Run if picture uploaded
         if (isset($_FILES['picture'])) {
-            $pic = $this->pic_upload($_FILES['picture']); 
+            // Picture file size & type
+            $pic_name = $_POST['picture'] = $_FILES['picture']['name'];
+            $pic_size = $_POST['picture'] = $_FILES['picture']['size'];
+            $pic_type = $_POST['picture'] = $_FILES['picture']['type'];
+
+            $ok_type = array(
+                'image/jpeg',
+                'image/jpg',
+                'image/png',
+                'image/gif'
+                );
+
+            if ($pic_size > 1048576) {
+                Router::redirect("/users/signup/errors/size");
+            }
+            if (!in_array($pic_type, $ok_type)) {
+                Router::redirect("/users/signup/errors/type");
+            }
+ 
+            $_POST['picture'] = $pic_name;
 
             $data = Array(
                 "first_name" => $_POST['first_name'],
@@ -281,14 +318,18 @@ class users_controller extends base_controller {
         DB::instance(DB_NAME)->update("users", $data, "WHERE user_id = ".$_POST['user_id']);
 
         // Redirect after signup to login
-        Router::redirect('/users/profile/'.$_POST['user_id']);
+        //Router::redirect('/users/profile/'.$_POST['user_id']);
+        echo "<pre>";
+            print_r($data);
+            print_r($_POST);
+        echo "</pre>";
     }
 
 
     /* 
      * Display the profile page
      */
-    public function profile($user_id = NULL) {
+    public function profile($user_id = NULL, $errors = NULL, $source = NULL) {
 
         // If they are not logged in send them back to the login page
         if (!$this->user) {
@@ -316,6 +357,8 @@ class users_controller extends base_controller {
 
             // pass the user name parameter
             $this->template->content->user_details = $user_details;
+            $this->template->content->errors       = $errors;
+            $this->template->content->source       = $source;
         }
 
         // Display the view
