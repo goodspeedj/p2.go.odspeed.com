@@ -12,33 +12,31 @@
 
 
   <!-- Error checking -->
-  <?php if(isset($errors) && isset($size)): ?>
+  <?php if(isset($errors) && isset($source)): ?>
 
-    <p>&nbsp;</p>
-    <div class='alert alert-danger'>
-      Please limit file sizes to 1MB or less.
-    </div>
-    <br>
+    <?php if ($source == 'size'): ?>
+      <p>&nbsp;</p>
+      <div class='alert alert-danger'>
+        Please limit file sizes to 1MB or less.
+      </div>
+      <br>
+    <?php endif; ?>
 
-  <?php endif; ?>
+    <?php if ($source == 'type'): ?>
+      <p>&nbsp;</p>
+      <div class='alert alert-danger'>
+        Please limit file types to JPG, JPEG, GIF or PNG.
+      </div>
+      <br>
+    <?php endif; ?>
 
-  <?php if(isset($errors) && isset($type)): ?>
-
-    <p>&nbsp;</p>
-    <div class='alert alert-danger'>
-      Please limit file types to JPG, JPEG, GIF or PNG.
-    </div>
-    <br>
-
-  <?php endif; ?>
-
-  <?php if(isset($errors) && isset($email)): ?>
-
-    <p>&nbsp;</p>
-    <div class='alert alert-danger'>
-      Email address is already registered.
-    </div>
-    <br>
+    <?php if ($source == 'email'): ?>
+      <p>&nbsp;</p>
+      <div class='alert alert-danger'>
+        Email address is already registered.
+      </div>
+      <br>
+    <?php endif; ?>
 
   <?php endif; ?>
 

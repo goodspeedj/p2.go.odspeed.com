@@ -36,7 +36,7 @@ class users_controller extends base_controller {
             Router::redirect("/users/signup/errors/size");
         }
         if (!in_array($pic_type, $ok_type)) {
-                Router::redirect("/users/signup/errors/type");
+            Router::redirect("/users/signup/errors/type");
         }
 
         return $_FILES['picture']['name'];
