@@ -25,6 +25,12 @@
       <td class="left"><?= $user_details['bio']?></td>
     </tr>
     <tr>
+      <td class="bold left">Avatar:</td>
+      <td class="left">
+        <img class="avatar" src="/img/user_pics/<?= $user_details['picture']?>" alt="Avatar" height="32" width="32">
+      </td>
+    </tr>
+    <tr>
       <td class="center" colspan="2">
         <p>&nbsp;</p>
         <a href="/users/edit/<?= $user_details['user_id']?>" class="center btn btn-danger">Edit Profile</a>
