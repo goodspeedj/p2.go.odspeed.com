@@ -273,8 +273,17 @@ class users_controller extends base_controller {
             if (!in_array($pic_type, $ok_type)) {
                 Router::redirect("/users/edit/".$_POST['user_id']."/errors/type");
             }
+
+            // Move the pictures to the right location on disk and prepend the user_id to the file name
+            move_uploaded_file($_FILES["picture"]["tmp_name"],
+                "img/user_pics/" .$user_data['user_id'].'-'.$pic_name);
+
+            // Update the picture name - append the user_id.  Prevents duplicate file names
+            $pic_data = Array("picture" => $user_data['user_id'].'-'.$pic_name);
+
+
  
-            $_POST['picture'] = $pic_name;
+            $_POST['picture'] = $user_data['user_id'].'-'.$pic_name;
 
             $data = Array(
                 "first_name" => $_POST['first_name'],
