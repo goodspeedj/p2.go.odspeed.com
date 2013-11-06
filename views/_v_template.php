@@ -47,7 +47,7 @@
       <span class="footer-text">
         <a href="mailto:jgoodsp@fas.harvard.edu">jgoodsp@fas.harvard.edu</a>
       </span>
-      <span class="footer-text">CSCI E-15 Project #2</span>
+      <span class="footer-text">CSCI E-15 Project &#35;2</span>
       <span class="footer-text">
         <a href="https://github.com/goodspeedj/p2.go.odspeed.com">GitHub Repo</a>
       </span>
