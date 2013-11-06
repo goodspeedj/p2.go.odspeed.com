@@ -16,33 +16,6 @@ class users_controller extends base_controller {
     }
 
 
-    /*
-     * File processing for picture upload
-     */
-    public function pic_upload($file) {
-
-        // Picture file size & type
-        $pic_size = $_POST['picture'] = $_FILES['picture']['size'];
-        $pic_type = $_POST['picture'] = $_FILES['picture']['type'];
-
-        $ok_type = array(
-            'image/jpeg',
-            'image/jpg',
-            'image/png',
-            'image/gif'
-            );
-
-        if ($pic_size > 1048576) {
-            Router::redirect("/users/signup/errors/size");
-        }
-        if (!in_array($pic_type, $ok_type)) {
-            Router::redirect("/users/signup/errors/type");
-        }
-
-        return $_FILES['picture']['name'];
-    }
-
-
     /**
      * Display the user sign up form
      */
@@ -67,7 +40,8 @@ class users_controller extends base_controller {
         $dir = "img/user_pics";
 
         // Run if picture uploaded
-        if (isset($_FILES['picture'])) {
+        if ($_FILES['picture']['name']) {
+
             // Picture file size & type
             $pic_name = $_FILES['picture']['name'];
             $pic_size = $_FILES['picture']['size'];
@@ -124,14 +98,19 @@ class users_controller extends base_controller {
 
             $user_data = DB::instance(DB_NAME)->select_row($sql);
 
-            // Move the pictures to the right location on disk and prepend the user_id to the file name
-            move_uploaded_file($_FILES["picture"]["tmp_name"],
-                "img/user_pics/" .$user_data['user_id'].'-'.$pic_name);
 
-            // Update the picture name - append the user_id.  Prevents duplicate file names
-            $pic_data = Array("picture" => $user_data['user_id'].'-'.$pic_name);
-        
-            DB::instance(DB_NAME)->update("users", $pic_data, "WHERE user_id = ". $user_data['user_id']);
+            // Update picture info if set
+            if ($_FILES['picture']['name']) {
+                // Move the pictures to the right location on disk and prepend the user_id to the file name
+                move_uploaded_file($_FILES["picture"]["tmp_name"],
+                    "img/user_pics/" .$user_data['user_id'].'-'.$pic_name);
+
+                // Update the picture name - append the user_id.  Prevents duplicate file names
+                $pic_data = Array("picture" => $user_data['user_id'].'-'.$pic_name);
+
+                DB::instance(DB_NAME)->update("users", $pic_data, "WHERE user_id = ". $user_data['user_id']);
+            }
+            
 
             // Make the user follow themselves
             $data = Array(
@@ -227,7 +206,7 @@ class users_controller extends base_controller {
     /**
      * Edit the user profile
      */
-    public function edit($user_id = NULL) {
+    public function edit($user_id = NULL, $errors = NULL, $source = NULL) {
 
         // Setup the view
         $this->template->content = View::instance('v_users_edit');
@@ -246,6 +225,8 @@ class users_controller extends base_controller {
 
             // pass the user name parameter
             $this->template->content->user_details = $user_details;
+            $this->template->content->errors       = $errors;
+            $this->template->content->source       = $source;
 
             // Display the view
             echo $this->template;
@@ -271,11 +252,11 @@ class users_controller extends base_controller {
         $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
 
         // Run if picture uploaded
-        if (isset($_FILES['picture'])) {
+        if ($_FILES['picture']['name']) {
             // Picture file size & type
-            $pic_name = $_POST['picture'] = $_FILES['picture']['name'];
-            $pic_size = $_POST['picture'] = $_FILES['picture']['size'];
-            $pic_type = $_POST['picture'] = $_FILES['picture']['type'];
+            $pic_name = $_FILES['picture']['name'];
+            $pic_size = $_FILES['picture']['size'];
+            $pic_type = $_FILES['picture']['type'];
 
             $ok_type = array(
                 'image/jpeg',
@@ -284,11 +265,12 @@ class users_controller extends base_controller {
                 'image/gif'
                 );
 
+
             if ($pic_size > 1048576) {
-                Router::redirect("/users/signup/errors/size");
+                Router::redirect("/users/edit/".$_POST['user_id']."/errors/size");
             }
             if (!in_array($pic_type, $ok_type)) {
-                Router::redirect("/users/signup/errors/type");
+                Router::redirect("/users/edit/".$_POST['user_id']."/errors/type");
             }
  
             $_POST['picture'] = $pic_name;
@@ -318,11 +300,7 @@ class users_controller extends base_controller {
         DB::instance(DB_NAME)->update("users", $data, "WHERE user_id = ".$_POST['user_id']);
 
         // Redirect after signup to login
-        //Router::redirect('/users/profile/'.$_POST['user_id']);
-        echo "<pre>";
-            print_r($data);
-            print_r($_POST);
-        echo "</pre>";
+        Router::redirect('/users/profile/'.$_POST['user_id']);
     }
 
 

@@ -2,8 +2,29 @@
 <?php if (isset($user_details)): ?>
 
   <h3>Profile for <?=$user_details['first_name']?> <?=$user_details['last_name'] ?></h3>
+
+  <!-- Error checking -->
+  <?php if(isset($errors) && isset($source)): ?>
+
+    <?php if ($source == 'size'): ?>
+      <p>&nbsp;</p>
+      <div class='profile alert alert-danger'>
+        Please limit file sizes to 1MB or less.
+      </div>
+      <br>
+    <?php endif; ?>
+
+    <?php if ($source == 'type'): ?>
+      <p>&nbsp;</p>
+      <div class='profile alert alert-danger'>
+        Please limit file types to JPG, JPEG, GIF or PNG.
+      </div>
+      <br>
+    <?php endif; ?>
+
+    <?php endif; ?>
  
-  <form id="profile-edit" method="POST" action="/users/p_edit">
+  <form id="profile-edit" method="POST" action="/users/p_edit" enctype="multipart/form-data">
   
     <div class="form-group">
       <input type="hidden" value="<?=$user_details['user_id'] ?>" name="user_id">

@@ -27,31 +27,15 @@
     <tr>
       <td class="bold left">Avatar image:</td>
       <td class="left">
-        <img class="avatar" src="/img/user_pics/<?= $user_details['picture']?>" alt="Avatar" height="32" width="32">
+
+        <?php if ($user_details['picture']): ?>
+          <img class="avatar" src="/img/user_pics/<?= $user_details['picture']?>" alt="Avatar" height="32" width="32">
+        <?php else: ?>
+          <img class="avatar" src="/img/user_pics/avatar.jpg" alt="Default Avatar" height="32" width="32">
+        <?php endif; ?>
+
       </td>
     </tr>
-
-    <!-- Error checking -->
-    <?php if(isset($errors) && isset($source)): ?>
-
-      <?php if ($source == 'size'): ?>
-        <p>&nbsp;</p>
-        <div class='alert alert-danger'>
-          Please limit file sizes to 1MB or less.
-        </div>
-        <br>
-      <?php endif; ?>
-
-      <?php if ($source == 'type'): ?>
-        <p>&nbsp;</p>
-        <div class='alert alert-danger'>
-          Please limit file types to JPG, JPEG, GIF or PNG.
-        </div>
-        <br>
-      <?php endif; ?>
-
-    <?php endif; ?>
-
     <tr>
       <td class="center" colspan="2">
         <p>&nbsp;</p>

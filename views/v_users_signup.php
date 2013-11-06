@@ -16,7 +16,7 @@
 
     <?php if ($source == 'size'): ?>
       <p>&nbsp;</p>
-      <div class='alert alert-danger'>
+      <div class='profile alert alert-danger'>
         Please limit file sizes to 1MB or less.
       </div>
       <br>
@@ -24,7 +24,7 @@
 
     <?php if ($source == 'type'): ?>
       <p>&nbsp;</p>
-      <div class='alert alert-danger'>
+      <div class='profile alert alert-danger'>
         Please limit file types to JPG, JPEG, GIF or PNG.
       </div>
       <br>
@@ -32,7 +32,7 @@
 
     <?php if ($source == 'email'): ?>
       <p>&nbsp;</p>
-      <div class='alert alert-danger'>
+      <div class='profile alert alert-danger'>
         Email address is already registered.
       </div>
       <br>
