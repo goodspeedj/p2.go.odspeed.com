@@ -9,7 +9,7 @@
   <!-- Check for bad user name / password -->
   <?php if(isset($err)): ?>
 
-    <div class='alert alert-danger'>
+    <div class='profile alert alert-danger'>
       Login failed, please check credentials.
     </div>
     <br>
