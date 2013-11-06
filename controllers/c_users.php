@@ -54,6 +54,7 @@ class users_controller extends base_controller {
                 'image/gif'
                 );
 
+            // Error checking
             if ($pic_size > 1048576) {
                 Router::redirect("/users/signup/errors/size");
             }
